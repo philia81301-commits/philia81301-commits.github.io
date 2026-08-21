@@ -39,6 +39,13 @@
     min-height:52vh; display:flex; align-items:flex-end;
     position:relative;
   }
+  .hero-rose{
+    position:absolute;
+    right:calc(50% + 400px);            /* 右緣貼齊標題欄左側，留一點呼吸 */
+    bottom:10%;
+    width:min(22vw, 300px); opacity:.95; pointer-events:none;
+  }
+  @media (max-width:1080px){.hero-rose{display:none;}} /* 窄螢幕沒有左側空白，收起 */
   .hero-inner{
     width:100%; max-width:880px; margin:0 auto;
     padding:5.5rem 1.4rem 3.2rem;
@@ -142,13 +149,6 @@
   footer{
     border-top:1px solid var(--line); padding:2.2rem 1.4rem 3rem;
     text-align:center; color:var(--sub); font-size:.8rem;
-    position:relative; overflow:hidden;
-  }
-  footer::before{
-    content:""; position:absolute; left:clamp(.5rem, 3vw, 3.5rem); bottom:-34px;
-    width:min(32vw, 230px); aspect-ratio:560/540;
-    background:url("assets/rose-mark.webp") no-repeat center/contain;
-    opacity:.95; pointer-events:none;
   }
   footer .sig{
     font-family:"Noto Serif TC",serif; font-weight:700; font-size:.95rem;
@@ -159,6 +159,7 @@
 <body>
 
 <header class="hero">
+  <img class="hero-rose" src="assets/rose-mark.webp" alt="" aria-hidden="true">
   <div class="hero-inner">
     <div class="kicker">家醫科・臨床工具集</div>
     <h1>潘湘如 醫師</h1>
