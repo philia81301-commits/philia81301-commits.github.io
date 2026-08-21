@@ -28,11 +28,22 @@
     font-family:"Noto Sans TC",-apple-system,"Microsoft JhengHei",sans-serif;
     line-height:1.65; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:960px;margin:0 auto;padding:2.2rem 1.1rem 3rem;}
-  header{margin-bottom:2rem;}
-  h1{font-size:1.7rem;font-weight:700;letter-spacing:.02em;}
-  .role{color:var(--accent);font-weight:500;margin-top:.15rem;}
-  .intro{color:var(--sub);margin-top:.6rem;max-width:38em;font-size:.95rem;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 1.1rem 3rem;}
+  .hero{
+    background:#dcebe6 url("assets/hero-bg.webp") center/cover no-repeat;
+    border-bottom:1px solid var(--line);
+  }
+  .no-webp .hero{background-image:url("assets/hero-bg.jpg");}
+  .hero-inner{
+    max-width:960px;margin:0 auto;padding:3.2rem 1.1rem 2.6rem;
+  }
+  h1{font-size:1.85rem;font-weight:700;letter-spacing:.02em;color:#12332c;}
+  .role{color:#0f6e5f;font-weight:500;margin-top:.15rem;}
+  .intro{
+    color:#33544c;margin-top:.7rem;max-width:34em;font-size:.95rem;
+    text-shadow:0 1px 8px rgba(255,255,255,.55);
+  }
+  @media (max-width:640px){.hero-inner{padding:2.4rem 1.1rem 2rem;}h1{font-size:1.55rem;}}
   section{margin-top:2rem;}
   h2{
     font-size:1.05rem;font-weight:700;letter-spacing:.06em;
@@ -67,16 +78,19 @@
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <h1>潘湘如 醫師</h1>
-  <div class="role">家醫科</div>
-  <p class="intro">這裡集中放我在門診、社區與教學現場實際使用的工具。
-  臨床工具供專業人員參考使用，不能取代醫師診療；一般民眾請與您的醫師討論後再使用相關資訊。</p>
+<header class="hero">
+  <div class="hero-inner">
+    <h1>潘湘如 醫師</h1>
+    <div class="role">家醫科</div>
+    <p class="intro">這裡集中放我在門診、社區與教學現場實際使用的工具。
+    臨床工具供專業人員參考使用，不能取代醫師診療；一般民眾請與您的醫師討論後再使用相關資訊。</p>
+  </div>
 </header>
 
-<section>
+<div class="wrap">
+
+<section style="margin-top:2.2rem">
   <h2>門診臨床工具</h2>
   <div class="grid">
     <a class="card" href="https://philia81301-commits.github.io/weight-maintain-clinic/">
