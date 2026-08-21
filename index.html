@@ -33,8 +33,10 @@
   /* ── Hero ─────────────────────────────── */
   .hero{
     background:
-      linear-gradient(100deg, rgba(252,250,243,1) 0%, rgba(252,250,243,.97) 30%,
-        rgba(252,250,243,.58) 62%, rgba(250,246,236,.26) 100%),
+      radial-gradient(420px 380px at calc(50% - 560px) 66%, rgba(183,110,121,.16), transparent 70%),
+      radial-gradient(55% 75% at 60% 28%, rgba(183,110,121,.07), transparent 62%),
+      linear-gradient(100deg, rgba(252,250,243,1) 0%, rgba(252,249,243,.97) 30%,
+        rgba(252,248,242,.58) 62%, rgba(249,242,235,.26) 100%),
       #e9d9ba url("assets/bread-hero.webp") center 62%/cover no-repeat;
     min-height:52vh; display:flex; align-items:flex-end;
     position:relative;
@@ -159,7 +161,7 @@
 <body>
 
 <header class="hero">
-  <img class="hero-rose" src="assets/rose-mark-rg.webp" alt="" aria-hidden="true">
+  <img class="hero-rose" src="assets/rose-mark-blend.webp" alt="" aria-hidden="true">
   <div class="hero-inner">
     <div class="kicker">家醫科・臨床工具集</div>
     <h1>潘湘如 醫師</h1>
