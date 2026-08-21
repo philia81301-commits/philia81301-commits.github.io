@@ -11,23 +11,35 @@
 
 ## 設計語彙（已多次迭代確認，別自行退回舊版）
 
-- Noto Serif TC 襯線標題＋暖白紙感背景
-- 單一強調色：**暖沙金 #9a6b2a**（曾否決：青綠色、等高線底圖、卡片上直接放 QR）
-- hero 為純 CSS 漸層暈染（無圖檔），偏深的琥珀金
+- Noto Serif TC 襯線標題＋暖白紙感背景（帶縱向光澤漸層）
+- 單一強調色：**暖沙金 #9a6b2a**（曾否決：青綠色、等高線底圖、卡片上直接放 QR、純 CSS 暈染 hero）
+- hero：**399麵包坊出爐麵包照**（assets/bread-hero.webp）＋左側奶油遮罩＋
+  **玫瑰金玫瑰浮水印**（assets/rose-mark-blend.webp，#B76E79 左粉右金過渡、背景帶光暈）置於標題左側；
+  窄螢幕（<1080px）玫瑰縮小移到右上角
 - QR code 收成「QR」小按鈕，點擊彈窗放大（適合演講投影）
-- 卡片：直角、細框、留白、細線 SVG 圖示
+- 卡片：懸浮陰影、浮凸徽章圖示（漸層底＋高光＋內陰影）、細線 SVG
 
 ## 路線圖
 
-- [x] P1 上線：三分區 10 張卡片、AI 教學介紹頁、QR 彈窗、README 維護說明（2026-08-21）
-- [ ] 之後有新工具隨時上架（步驟見 README.md）
+- [x] P1 上線：三分區卡片、AI 教學介紹頁、QR 彈窗、README（2026-08-21）
+- [x] 視覺迭代定稿：麵包 hero＋玫瑰金玫瑰＋立體化（2026-08-21）
+- [x] 優化包：OG 分享卡、favicon、教材線上閱讀版、手機小玫瑰、QR 總表、404（2026-08-22）
+- [x] 卡片擴充至 12 張（新增 weight-clinic-reports 月報索引、減重大冒險、肌少症衛教小測驗）
+- [ ] 之後有新工具隨時上架（步驟見 README.md；記得 qr/index.html 也加一格）
+
+## 相關產出
+
+- **399麵包坊品牌素材畫布**（Logo／圓形貼紙／IG 社群圖）：
+  https://claude.ai/code/artifact/2cac14cb-ca2c-40f3-8f1d-27e40c82f84f
 
 ## 資料夾結構
 
 ```
-index.html            首頁（門診臨床工具／社區篩檢／教學與演講）
-ai-teaching/          AI 教學介紹頁＋教材檔（代管自 private 的 agent-roadshow）
-assets/qr/            預產 QR SVG（本機 Python qrcode 套件產生）
+index.html            首頁（門診臨床工具／社區篩檢／教學與演講，12 張卡片）
+ai-teaching/          AI 教學介紹頁＋教材檔＋線上閱讀版（guide.html／manual.html）
+qr/                   QR 總表（A4 可列印）
+404.html              品牌風格錯誤頁
+assets/               hero 底圖、玫瑰浮水印、OG 分享圖、favicon、qr/ SVG
 rdq/                  需求規格卡（.gitignore，不公開）
 README.md             維護說明（加新工具的完整步驟）
 ```
