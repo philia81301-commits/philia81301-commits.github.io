@@ -10,15 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@350;400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#fbfbf9; --card:#ffffff; --ink:#20302c; --sub:#6b7d77;
-    --line:#e6e9e4; --accent:#0f6e5f; --accent-deep:#0a4a40;
-    --accent-soft:#eef4f0; --hero-ink:#12332c;
+    --bg:#fbfaf7; --card:#ffffff; --ink:#2e2a22; --sub:#7d7466;
+    --line:#eae4d9; --accent:#9a6b2a; --accent-deep:#6f4d1e;
+    --accent-soft:#f5eddd; --hero-ink:#3a2f1d;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#12181b; --card:#1a2226; --ink:#e6ece9; --sub:#8fa39c;
-      --line:#28322f; --accent:#54b8a3; --accent-deep:#8ed9c9;
-      --accent-soft:#1d2b28;
+      --bg:#16130e; --card:#1f1a12; --ink:#ece5d8; --sub:#a3987f;
+      --line:#322b1f; --accent:#d8ac5e; --accent-deep:#ecc887;
+      --accent-soft:#2b2416;
     }
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -32,7 +32,10 @@
 
   /* ── Hero ─────────────────────────────── */
   .hero{
-    background:#e8f1ec url("assets/hero-bg.webp") center/cover no-repeat;
+    background:
+      radial-gradient(120% 95% at 88% 108%, rgba(163,112,42,.34), transparent 62%),
+      radial-gradient(85% 75% at 102% 28%, rgba(201,158,88,.24), transparent 58%),
+      linear-gradient(135deg, #fdfcf9 0%, #f8f1e4 48%, #ecd9b8 100%);
     min-height:52vh; display:flex; align-items:flex-end;
   }
   .hero-inner{
@@ -53,10 +56,11 @@
     margin:1.3rem 0 1.1rem; border-radius:2px;
   }
   .hero p{
-    color:#3d5a52; max-width:30em; font-size:.95rem; font-weight:400;
+    color:#6b5636; max-width:30em; font-size:.95rem; font-weight:400;
   }
   @media (prefers-color-scheme: dark){
-    .hero h1{color:#12332c;} /* 底圖恆為亮色，字色固定深 */
+    .hero h1{color:#3a2f1d;} /* 暈染底恆為亮色，字色固定深 */
+    .hero .kicker{color:#8a5f24;}
   }
 
   /* ── Sections ─────────────────────────── */
@@ -83,7 +87,7 @@
     padding:1.5rem 1.5rem 1.2rem; text-decoration:none; color:inherit;
     transition:border-color .2s, box-shadow .2s;
   }
-  .card:hover{border-color:var(--accent); box-shadow:0 12px 32px -18px rgba(15,110,95,.35);}
+  .card:hover{border-color:var(--accent); box-shadow:0 12px 32px -18px rgba(154,107,42,.35);}
   .card-top{display:flex; align-items:center; gap:.7rem; margin-bottom:.7rem;}
   .glyph{color:var(--accent); display:flex;}
   .glyph svg{width:21px; height:21px; stroke:currentColor; fill:none;
