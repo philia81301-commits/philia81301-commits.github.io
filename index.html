@@ -7,185 +7,286 @@
 <meta name="description" content="潘湘如醫師（家醫科）的臨床工具與教學資源入口：減重、骨鬆、肌少症、幽門桿菌、肺炎鏈球菌疫苗、病歷書寫與 AI 教學。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@350;400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f7f9; --card:#ffffff; --ink:#1c2733; --sub:#5b6b7b;
-    --line:#e3e8ee; --accent:#0f6e5f; --accent-soft:#e3f2ef;
-    --badge-ink:#8a5a00; --badge-bg:#fff3d6;
+    --bg:#fbfbf9; --card:#ffffff; --ink:#20302c; --sub:#6b7d77;
+    --line:#e6e9e4; --accent:#0f6e5f; --accent-deep:#0a4a40;
+    --accent-soft:#eef4f0; --hero-ink:#12332c;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#141a20; --card:#1d252e; --ink:#e8edf2; --sub:#9fb0c0;
-      --line:#2c3844; --accent:#4fbfa8; --accent-soft:#1e3833;
-      --badge-ink:#ffd98a; --badge-bg:#3a2f14;
+      --bg:#12181b; --card:#1a2226; --ink:#e6ece9; --sub:#8fa39c;
+      --line:#28322f; --accent:#54b8a3; --accent-deep:#8ed9c9;
+      --accent-soft:#1d2b28;
     }
-    .qr-box{background:#fff;border-radius:6px;padding:4px;}
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
   body{
     background:var(--bg); color:var(--ink);
     font-family:"Noto Sans TC",-apple-system,"Microsoft JhengHei",sans-serif;
-    line-height:1.65; -webkit-font-smoothing:antialiased;
+    font-weight:350; line-height:1.75; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:960px;margin:0 auto;padding:0 1.1rem 3rem;}
+  .serif{font-family:"Noto Serif TC","Noto Sans TC",serif;}
+
+  /* ── Hero ─────────────────────────────── */
   .hero{
-    background:#dcebe6 url("assets/hero-bg.webp") center/cover no-repeat;
-    border-bottom:1px solid var(--line);
+    background:#e8f1ec url("assets/hero-bg.webp") center/cover no-repeat;
+    min-height:52vh; display:flex; align-items:flex-end;
   }
-  .no-webp .hero{background-image:url("assets/hero-bg.jpg");}
   .hero-inner{
-    max-width:960px;margin:0 auto;padding:3.2rem 1.1rem 2.6rem;
+    width:100%; max-width:880px; margin:0 auto;
+    padding:5.5rem 1.4rem 3.2rem;
   }
-  h1{font-size:1.85rem;font-weight:700;letter-spacing:.02em;color:#12332c;}
-  .role{color:#0f6e5f;font-weight:500;margin-top:.15rem;}
-  .intro{
-    color:#33544c;margin-top:.7rem;max-width:34em;font-size:.95rem;
-    text-shadow:0 1px 8px rgba(255,255,255,.55);
+  .kicker{
+    font-size:.8rem; letter-spacing:.42em; text-indent:.42em;
+    color:var(--accent); font-weight:500; margin-bottom:1rem;
   }
-  @media (max-width:640px){.hero-inner{padding:2.4rem 1.1rem 2rem;}h1{font-size:1.55rem;}}
-  section{margin-top:2rem;}
-  h2{
-    font-size:1.05rem;font-weight:700;letter-spacing:.06em;
-    color:var(--sub);display:flex;align-items:center;gap:.55rem;
-    margin-bottom:.9rem;
+  .hero h1{
+    font-family:"Noto Serif TC",serif; font-weight:900;
+    font-size:clamp(2.5rem, 6vw, 3.6rem); line-height:1.2;
+    color:var(--hero-ink); letter-spacing:.04em;
   }
-  h2::after{content:"";flex:1;height:1px;background:var(--line);}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem;}
-  a.card{
-    display:flex;gap:.9rem;align-items:flex-start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;
-    padding:1rem 1.05rem;text-decoration:none;color:inherit;
-    transition:border-color .15s, transform .15s;
+  .hero .rule{
+    width:3.2rem; height:3px; background:var(--accent);
+    margin:1.3rem 0 1.1rem; border-radius:2px;
   }
-  a.card:hover{border-color:var(--accent);transform:translateY(-2px);}
-  .card-main{flex:1;min-width:0;}
-  .icon{
-    flex:0 0 auto;width:42px;height:42px;border-radius:10px;
-    background:var(--accent-soft);color:var(--accent);
-    display:flex;align-items:center;justify-content:center;
+  .hero p{
+    color:#3d5a52; max-width:30em; font-size:.95rem; font-weight:400;
   }
-  .icon svg{width:23px;height:23px;stroke:currentColor;fill:none;
-    stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-  .card h3{font-size:1.02rem;font-weight:700;}
-  .card p{color:var(--sub);font-size:.87rem;margin-top:.3rem;}
-  .badge{
-    display:inline-block;font-size:.72rem;font-weight:500;
-    color:var(--badge-ink);background:var(--badge-bg);
-    border-radius:99px;padding:.1rem .55rem;margin-top:.45rem;
+  @media (prefers-color-scheme: dark){
+    .hero h1{color:#12332c;} /* 底圖恆為亮色，字色固定深 */
   }
-  .qr-box{flex:0 0 auto;width:76px;height:76px;}
-  .qr-box svg,.qr-box img{width:100%;height:100%;display:block;}
-  @media (max-width:420px){.qr-box{width:64px;height:64px;}}
+
+  /* ── Sections ─────────────────────────── */
+  main{max-width:880px; margin:0 auto; padding:1rem 1.4rem 4rem;}
+  section{margin-top:3.6rem;}
+  .sec-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:1.6rem;}
+  .sec-num{
+    font-family:"Noto Serif TC",serif; font-weight:700;
+    font-size:.9rem; color:var(--accent); letter-spacing:.05em;
+  }
+  .sec-head h2{
+    font-family:"Noto Serif TC",serif; font-weight:700;
+    font-size:1.35rem; letter-spacing:.12em;
+  }
+  .sec-head::after{content:""; flex:1; height:1px; background:var(--line); transform:translateY(-4px);}
+
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:1.1rem;}
+  @media (max-width:660px){.grid{grid-template-columns:1fr;}}
+
+  /* ── Cards ────────────────────────────── */
+  .card{
+    position:relative; display:flex; flex-direction:column;
+    background:var(--card); border:1px solid var(--line); border-radius:4px;
+    padding:1.5rem 1.5rem 1.2rem; text-decoration:none; color:inherit;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .card:hover{border-color:var(--accent); box-shadow:0 12px 32px -18px rgba(15,110,95,.35);}
+  .card-top{display:flex; align-items:center; gap:.7rem; margin-bottom:.7rem;}
+  .glyph{color:var(--accent); display:flex;}
+  .glyph svg{width:21px; height:21px; stroke:currentColor; fill:none;
+    stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .card h3{
+    font-family:"Noto Serif TC",serif; font-weight:700;
+    font-size:1.08rem; letter-spacing:.02em; line-height:1.45;
+  }
+  .card p{color:var(--sub); font-size:.86rem; flex:1;}
+  .note{
+    font-size:.78rem; color:var(--sub); margin-top:.6rem;
+  }
+  .note::before{content:"◦ "; color:var(--accent);}
+  .card-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:1.1rem; padding-top:.8rem; border-top:1px solid var(--line);
+  }
+  .go{font-size:.82rem; color:var(--accent); font-weight:500; letter-spacing:.06em;}
+  .go::after{content:" →"; transition:margin .2s;}
+  .card:hover .go::after{margin-left:.3em;}
+  .qr-btn{
+    font:inherit; font-size:.72rem; letter-spacing:.12em; font-weight:500;
+    color:var(--sub); background:none; border:1px solid var(--line);
+    border-radius:99px; padding:.22rem .8rem; cursor:pointer;
+    transition:color .2s, border-color .2s;
+  }
+  .qr-btn:hover{color:var(--accent); border-color:var(--accent);}
+
+  /* ── QR modal ─────────────────────────── */
+  .qr-modal{
+    position:fixed; inset:0; background:rgba(18,30,27,.62);
+    display:none; align-items:center; justify-content:center; z-index:50;
+    padding:1.4rem; backdrop-filter:blur(3px);
+  }
+  .qr-modal.open{display:flex;}
+  .qr-panel{
+    background:#fff; border-radius:8px; padding:2.2rem 2.4rem 1.8rem;
+    text-align:center; max-width:min(88vw, 380px);
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.45);
+  }
+  .qr-panel img{width:min(62vw, 264px); height:auto; display:block; margin:0 auto;}
+  .qr-panel .qr-name{
+    font-family:"Noto Serif TC",serif; font-weight:700; color:#20302c;
+    margin-top:1rem; font-size:1.02rem;
+  }
+  .qr-panel .qr-hint{font-size:.78rem; color:#6b7d77; margin-top:.2rem;}
+
+  /* ── Footer ───────────────────────────── */
   footer{
-    margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);
-    color:var(--sub);font-size:.82rem;
+    border-top:1px solid var(--line); padding:2.2rem 1.4rem 3rem;
+    text-align:center; color:var(--sub); font-size:.8rem;
   }
-  footer .qr-home{float:right;width:64px;height:64px;margin-left:1rem;}
+  footer .sig{
+    font-family:"Noto Serif TC",serif; font-weight:700; font-size:.95rem;
+    color:var(--ink); letter-spacing:.2em; margin-bottom:.5rem;
+  }
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="hero-inner">
+    <div class="kicker">家醫科・臨床工具集</div>
     <h1>潘湘如 醫師</h1>
-    <div class="role">家醫科</div>
-    <p class="intro">這裡集中放我在門診、社區與教學現場實際使用的工具。
-    臨床工具供專業人員參考使用，不能取代醫師診療；一般民眾請與您的醫師討論後再使用相關資訊。</p>
+    <div class="rule"></div>
+    <p>集中放置我在門診、社區與教學現場實際使用的工具。臨床工具供專業人員參考，不能取代醫師診療。</p>
   </div>
 </header>
 
-<div class="wrap">
+<main>
 
-<section style="margin-top:2.2rem">
-  <h2>門診臨床工具</h2>
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>門診臨床工具</h2></div>
   <div class="grid">
+
     <a class="card" href="https://philia81301-commits.github.io/weight-maintain-clinic/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="3"/><path d="M6.5 8a2 2 0 0 0-1.905 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8Z"/></svg></div>
-      <div class="card-main">
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="3"/><path d="M6.5 8a2 2 0 0 0-1.905 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8Z"/></svg></span>
         <h3>減重維持輸入工具</h3>
-        <p>減重門診的維持期紀錄工具，追蹤體重與回診資料。</p>
       </div>
-      <div class="qr-box"><img src="assets/qr/weight.svg" alt="減重維持輸入工具 QR code"></div>
+      <p>減重門診的維持期紀錄工具，追蹤體重與回診資料。</p>
+      <div class="card-foot"><span class="go">開啟工具</span>
+        <button class="qr-btn" data-qr="assets/qr/weight.svg" data-name="減重維持輸入工具">QR</button></div>
     </a>
+
     <a class="card" href="https://philia81301-commits.github.io/osteoporosis-clinic/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg></div>
-      <div class="card-main">
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg></span>
         <h3>骨質疏鬆門診工具</h3>
-        <p>骨鬆風險評估與門診處置的輔助工具。</p>
       </div>
-      <div class="qr-box"><img src="assets/qr/osteo.svg" alt="骨質疏鬆門診工具 QR code"></div>
+      <p>骨鬆風險評估與門診處置的輔助工具。</p>
+      <div class="card-foot"><span class="go">開啟工具</span>
+        <button class="qr-btn" data-qr="assets/qr/osteo.svg" data-name="骨質疏鬆門診工具">QR</button></div>
     </a>
+
     <a class="card" href="https://philia81301-commits.github.io/HP-clinic/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8.5" width="13" height="6.6" rx="3.3" transform="rotate(-22 11.5 11.8)"/><path d="M18.6 6.2c1.1-.3 1.7-1.1 1.7-2.2"/><path d="M20 9.4c1.1.2 1.8.9 2.2 1.9"/><path d="M3.6 16.8c-.9.5-1.3 1.3-1.3 2.4"/></svg></div>
-      <div class="card-main">
-        <h3>幽門螺旋桿菌陽性處置工具集</h3>
-        <p>幽門桿菌檢驗陽性後的處置流程與衛教工具。</p>
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8.5" width="13" height="6.6" rx="3.3" transform="rotate(-22 11.5 11.8)"/><path d="M18.6 6.2c1.1-.3 1.7-1.1 1.7-2.2"/><path d="M20 9.4c1.1.2 1.8.9 2.2 1.9"/><path d="M3.6 16.8c-.9.5-1.3 1.3-1.3 2.4"/></svg></span>
+        <h3>幽門螺旋桿菌陽性處置</h3>
       </div>
-      <div class="qr-box"><img src="assets/qr/hp.svg" alt="幽門桿菌處置工具 QR code"></div>
+      <p>幽門桿菌檢驗陽性後的處置流程與衛教工具集。</p>
+      <div class="card-foot"><span class="go">開啟工具</span>
+        <button class="qr-btn" data-qr="assets/qr/hp.svg" data-name="幽門螺旋桿菌陽性處置">QR</button></div>
     </a>
+
     <a class="card" href="https://philia81301-commits.github.io/pneumonia-clinic/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg></div>
-      <div class="card-main">
-        <h3>肺炎鏈球菌疫苗工具</h3>
-        <p>台灣成人肺炎鏈球菌疫苗接種建議，含 2026-08-10 新制。</p>
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg></span>
+        <h3>肺炎鏈球菌疫苗</h3>
       </div>
-      <div class="qr-box"><img src="assets/qr/pneumo.svg" alt="肺炎鏈球菌疫苗工具 QR code"></div>
+      <p>台灣成人肺炎鏈球菌疫苗接種建議，含 2026-08-10 新制。</p>
+      <div class="card-foot"><span class="go">開啟工具</span>
+        <button class="qr-btn" data-qr="assets/qr/pneumo.svg" data-name="肺炎鏈球菌疫苗">QR</button></div>
     </a>
+
     <a class="card" href="https://philia81301-commits.github.io/pi-generator/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v9.5"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M13.378 15.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></div>
-      <div class="card-main">
-        <h3>入院病歷 Present Illness 產生器</h3>
-        <p>輸入結構化欄位，產生住院病歷現病史段落。</p>
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v9.5"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M13.378 15.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></span>
+        <h3>入院病歷 PI 產生器</h3>
       </div>
-      <div class="qr-box"><img src="assets/qr/pi.svg" alt="病歷產生器 QR code"></div>
+      <p>輸入結構化欄位，產生住院病歷 Present Illness 段落。</p>
+      <div class="card-foot"><span class="go">開啟工具</span>
+        <button class="qr-btn" data-qr="assets/qr/pi.svg" data-name="入院病歷 PI 產生器">QR</button></div>
     </a>
+
   </div>
 </section>
 
 <section>
-  <h2>社區篩檢</h2>
+  <div class="sec-head"><span class="sec-num">02</span><h2>社區篩檢</h2></div>
   <div class="grid">
+
     <a class="card" href="https://philia81301-commits.github.io/sarcopenia-clinic/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1 2.828-2.829l6.364 6.364a2 2 0 1 1-2.829 2.829l-1.767 1.768a2 2 0 1 1-2.829-2.828z"/></svg></div>
-      <div class="card-main">
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1 2.828-2.829l6.364 6.364a2 2 0 1 1-2.829 2.829l-1.767 1.768a2 2 0 1 1-2.829-2.828z"/></svg></span>
         <h3>肌少症篩檢紀錄工具</h3>
-        <p>門診與社區場域的肌少症篩檢量表與紀錄。</p>
-        <span class="badge">臨床使用工具：篩檢資料由施測者於現場輸入</span>
       </div>
-      <div class="qr-box"><img src="assets/qr/sarco.svg" alt="肌少症篩檢工具 QR code"></div>
+      <p>門診與社區場域的肌少症篩檢量表與紀錄。</p>
+      <div class="note">臨床使用工具：篩檢資料由施測者於現場輸入</div>
+      <div class="card-foot"><span class="go">開啟工具</span>
+        <button class="qr-btn" data-qr="assets/qr/sarco.svg" data-name="肌少症篩檢紀錄工具">QR</button></div>
     </a>
+
   </div>
 </section>
 
 <section>
-  <h2>教學與演講</h2>
+  <div class="sec-head"><span class="sec-num">03</span><h2>教學與演講</h2></div>
   <div class="grid">
+
     <a class="card" href="ai-teaching/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div>
-      <div class="card-main">
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
         <h3>AI Agent 醫療職場入門</h3>
-        <p>寫給醫療職場所有人的 AI Agent 教材：指南、操作手冊與簡報下載。</p>
       </div>
-      <div class="qr-box"><img src="assets/qr/ai-teaching.svg" alt="AI 教學 QR code"></div>
+      <p>寫給醫療職場所有人的 AI Agent 教材：指南、手冊與簡報下載。</p>
+      <div class="card-foot"><span class="go">開啟頁面</span>
+        <button class="qr-btn" data-qr="assets/qr/ai-teaching.svg" data-name="AI Agent 醫療職場入門">QR</button></div>
     </a>
+
     <a class="card" href="https://philia81301-commits.github.io/obesity-society-ai-talk/slides/">
-      <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg></div>
-      <div class="card-main">
+      <div class="card-top">
+        <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg></span>
         <h3>人工智慧在肥胖治療運用的新發展</h3>
-        <p>肥胖學會演講簡報（線上瀏覽版）。</p>
       </div>
-      <div class="qr-box"><img src="assets/qr/obesity-talk.svg" alt="肥胖學會演講 QR code"></div>
+      <p>肥胖學會演講簡報（線上瀏覽版）。</p>
+      <div class="card-foot"><span class="go">開啟簡報</span>
+        <button class="qr-btn" data-qr="assets/qr/obesity-talk.svg" data-name="人工智慧在肥胖治療運用的新發展">QR</button></div>
     </a>
+
   </div>
 </section>
+
+</main>
 
 <footer>
-  <div class="qr-home"><img src="assets/qr/home.svg" alt="本站 QR code"></div>
-  <p>© 2026 潘湘如醫師。本站工具僅供臨床與教學參考，不構成醫療建議、不取代醫師診療。</p>
-  <p>本站入口 QR code 在右側，演講投影時可直接掃描。</p>
+  <div class="sig">潘湘如 醫師</div>
+  <p>本站工具僅供臨床與教學參考，不構成醫療建議、不取代醫師診療。</p>
 </footer>
 
+<div class="qr-modal" id="qrModal" role="dialog" aria-modal="true">
+  <div class="qr-panel">
+    <img id="qrImg" src="" alt="QR code">
+    <div class="qr-name" id="qrName"></div>
+    <div class="qr-hint">掃描開啟・點任意處關閉</div>
+  </div>
 </div>
+
+<script>
+  const modal = document.getElementById('qrModal');
+  const qrImg = document.getElementById('qrImg');
+  const qrName = document.getElementById('qrName');
+  document.querySelectorAll('.qr-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault(); e.stopPropagation();
+      qrImg.src = btn.dataset.qr;
+      qrName.textContent = btn.dataset.name;
+      modal.classList.add('open');
+    });
+  });
+  modal.addEventListener('click', () => modal.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+</script>
+
 </body>
 </html>
