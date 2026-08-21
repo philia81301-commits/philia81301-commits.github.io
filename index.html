@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潘湘如醫師｜臨床工具集</title>
+<meta name="description" content="潘湘如醫師（家醫科）的臨床工具與教學資源入口：減重、骨鬆、肌少症、幽門桿菌、肺炎鏈球菌疫苗、病歷書寫與 AI 教學。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#1c2733; --sub:#5b6b7b;
+    --line:#e3e8ee; --accent:#0f6e5f; --accent-soft:#e3f2ef;
+    --badge-ink:#8a5a00; --badge-bg:#fff3d6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#141a20; --card:#1d252e; --ink:#e8edf2; --sub:#9fb0c0;
+      --line:#2c3844; --accent:#4fbfa8; --accent-soft:#1e3833;
+      --badge-ink:#ffd98a; --badge-bg:#3a2f14;
+    }
+    .qr-box{background:#fff;border-radius:6px;padding:4px;}
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Noto Sans TC",-apple-system,"Microsoft JhengHei",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:2.2rem 1.1rem 3rem;}
+  header{margin-bottom:2rem;}
+  h1{font-size:1.7rem;font-weight:700;letter-spacing:.02em;}
+  .role{color:var(--accent);font-weight:500;margin-top:.15rem;}
+  .intro{color:var(--sub);margin-top:.6rem;max-width:38em;font-size:.95rem;}
+  section{margin-top:2rem;}
+  h2{
+    font-size:1.05rem;font-weight:700;letter-spacing:.06em;
+    color:var(--sub);display:flex;align-items:center;gap:.55rem;
+    margin-bottom:.9rem;
+  }
+  h2::after{content:"";flex:1;height:1px;background:var(--line);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem;}
+  a.card{
+    display:flex;gap:.9rem;align-items:flex-start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:1rem 1.05rem;text-decoration:none;color:inherit;
+    transition:border-color .15s, transform .15s;
+  }
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .card-main{flex:1;min-width:0;}
+  .card h3{font-size:1.02rem;font-weight:700;}
+  .card p{color:var(--sub);font-size:.87rem;margin-top:.3rem;}
+  .badge{
+    display:inline-block;font-size:.72rem;font-weight:500;
+    color:var(--badge-ink);background:var(--badge-bg);
+    border-radius:99px;padding:.1rem .55rem;margin-top:.45rem;
+  }
+  .qr-box{flex:0 0 auto;width:76px;height:76px;}
+  .qr-box svg,.qr-box img{width:100%;height:100%;display:block;}
+  @media (max-width:420px){.qr-box{width:64px;height:64px;}}
+  footer{
+    margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);
+    color:var(--sub);font-size:.82rem;
+  }
+  footer .qr-home{float:right;width:64px;height:64px;margin-left:1rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>潘湘如 醫師</h1>
+  <div class="role">家醫科</div>
+  <p class="intro">這裡集中放我在門診、社區與教學現場實際使用的工具。
+  臨床工具供專業人員參考使用，不能取代醫師診療；一般民眾請與您的醫師討論後再使用相關資訊。</p>
+</header>
+
+<section>
+  <h2>門診臨床工具</h2>
+  <div class="grid">
+    <a class="card" href="https://philia81301-commits.github.io/weight-maintain-clinic/">
+      <div class="card-main">
+        <h3>減重維持輸入工具</h3>
+        <p>減重門診的維持期紀錄工具，追蹤體重與回診資料。</p>
+      </div>
+      <div class="qr-box"><img src="assets/qr/weight.svg" alt="減重維持輸入工具 QR code"></div>
+    </a>
+    <a class="card" href="https://philia81301-commits.github.io/osteoporosis-clinic/">
+      <div class="card-main">
+        <h3>骨質疏鬆門診工具</h3>
+        <p>骨鬆風險評估與門診處置的輔助工具。</p>
+      </div>
+      <div class="qr-box"><img src="assets/qr/osteo.svg" alt="骨質疏鬆門診工具 QR code"></div>
+    </a>
+    <a class="card" href="https://philia81301-commits.github.io/HP-clinic/">
+      <div class="card-main">
+        <h3>幽門螺旋桿菌陽性處置工具集</h3>
+        <p>幽門桿菌檢驗陽性後的處置流程與衛教工具。</p>
+      </div>
+      <div class="qr-box"><img src="assets/qr/hp.svg" alt="幽門桿菌處置工具 QR code"></div>
+    </a>
+    <a class="card" href="https://philia81301-commits.github.io/pneumonia-clinic/">
+      <div class="card-main">
+        <h3>肺炎鏈球菌疫苗工具</h3>
+        <p>台灣成人肺炎鏈球菌疫苗接種建議，含 2026-08-10 新制。</p>
+      </div>
+      <div class="qr-box"><img src="assets/qr/pneumo.svg" alt="肺炎鏈球菌疫苗工具 QR code"></div>
+    </a>
+    <a class="card" href="https://philia81301-commits.github.io/pi-generator/">
+      <div class="card-main">
+        <h3>入院病歷 Present Illness 產生器</h3>
+        <p>輸入結構化欄位，產生住院病歷現病史段落。</p>
+      </div>
+      <div class="qr-box"><img src="assets/qr/pi.svg" alt="病歷產生器 QR code"></div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>社區篩檢</h2>
+  <div class="grid">
+    <a class="card" href="https://philia81301-commits.github.io/sarcopenia-clinic/">
+      <div class="card-main">
+        <h3>肌少症篩檢紀錄工具</h3>
+        <p>門診與社區場域的肌少症篩檢量表與紀錄。</p>
+        <span class="badge">臨床使用工具：篩檢資料由施測者於現場輸入</span>
+      </div>
+      <div class="qr-box"><img src="assets/qr/sarco.svg" alt="肌少症篩檢工具 QR code"></div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>教學與演講</h2>
+  <div class="grid">
+    <a class="card" href="ai-teaching/">
+      <div class="card-main">
+        <h3>AI Agent 醫療職場入門</h3>
+        <p>寫給醫療職場所有人的 AI Agent 教材：指南、操作手冊與簡報下載。</p>
+      </div>
+      <div class="qr-box"><img src="assets/qr/ai-teaching.svg" alt="AI 教學 QR code"></div>
+    </a>
+    <a class="card" href="https://philia81301-commits.github.io/obesity-society-ai-talk/slides/">
+      <div class="card-main">
+        <h3>人工智慧在肥胖治療運用的新發展</h3>
+        <p>肥胖學會演講簡報（線上瀏覽版）。</p>
+      </div>
+      <div class="qr-box"><img src="assets/qr/obesity-talk.svg" alt="肥胖學會演講 QR code"></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="qr-home"><img src="assets/qr/home.svg" alt="本站 QR code"></div>
+  <p>© 2026 潘湘如醫師。本站工具僅供臨床與教學參考，不構成醫療建議、不取代醫師診療。</p>
+  <p>本站入口 QR code 在右側，演講投影時可直接掃描。</p>
+</footer>
+
+</div>
+</body>
+</html>
