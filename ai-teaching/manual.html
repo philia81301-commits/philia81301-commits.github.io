@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 醫療職場實務操作手冊｜399 潘湘如醫師</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@350;400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fbfaf7;--card:#fff;--ink:#2e2a22;--sub:#7d7466;--line:#eae4d9;--accent:#9a6b2a;}
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#16130e;--card:#1f1a12;--ink:#ece5d8;--sub:#a3987f;--line:#322b1f;--accent:#d8ac5e;}
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+    font-weight:350;line-height:1.85;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:720px;margin:0 auto;padding:2.4rem 1.3rem 4rem;}
+  .back{color:var(--accent);text-decoration:none;font-size:.86rem;letter-spacing:.08em;}
+  article h1{font-family:"Noto Serif TC",serif;font-weight:900;font-size:1.8rem;margin:1rem 0 1.2rem;letter-spacing:.03em;line-height:1.35;}
+  article h2{font-family:"Noto Serif TC",serif;font-weight:700;font-size:1.3rem;margin:2.4rem 0 .8rem;
+    padding-bottom:.4rem;border-bottom:1px solid var(--line);letter-spacing:.05em;}
+  article h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:1.08rem;margin:1.8rem 0 .6rem;}
+  article p{margin:.7rem 0;}
+  article ul, article ol{margin:.7rem 0 .7rem 1.5rem;}
+  article li{margin:.3rem 0;}
+  article blockquote{margin:1.2rem 0;padding:.8rem 1.1rem;border-left:4px solid var(--accent);
+    background:var(--card);border-radius:0 8px 8px 0;}
+  article blockquote p{margin:.3rem 0;}
+  article table{border-collapse:collapse;margin:1.2rem 0;width:100%;font-size:.88rem;display:block;overflow-x:auto;}
+  article th, article td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top;}
+  article th{background:var(--card);font-weight:500;white-space:nowrap;}
+  article code{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:.08em .35em;font-size:.86em;}
+  article pre{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem;overflow-x:auto;margin:1rem 0;}
+  article pre code{border:none;background:none;padding:0;}
+  article hr{border:none;border-top:1px solid var(--line);margin:2rem 0;}
+  article a{color:var(--accent);}
+  article strong{font-weight:700;}
+  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--sub);font-size:.8rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="./">← 回 AI 教學頁</a>
+<article>
+<h1>AI Agent 醫療職場實務操作手冊</h1>
+<blockquote>
+<p>給已經讓 Agent 跑起來、想把它變成日常工具的人。</p>
+<p><strong>這份不重複《AI Agent 醫療職場初學者指南》。</strong> 那份講「Model、Token、Context 是什麼」
+和「從 0 到 1 怎麼跑第一個任務」；這份接在那之後，講<strong>怎麼把它變成每天在用的東西</strong>，
+以及<strong>我實際踩過的坑</strong>。</p>
+<p>觀念不懂就回去翻指南，這份只講怎麼做。</p>
+</blockquote>
+<hr />
+<h2>這份手冊怎麼用</h2>
+<table>
+<thead>
+<tr>
+<th>你現在的狀態</th>
+<th>從哪一章開始</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>還沒裝、沒跑過任何任務</td>
+<td><strong>先看《初學者指南》附錄</strong>，10 分鐘跑完再回來</td>
+</tr>
+<tr>
+<td>跑過一兩次，但用完就忘了</td>
+<td>第一章、第二章</td>
+</tr>
+<tr>
+<td>一直在重複交代同樣的事</td>
+<td>第二章（AGENTS.md）、第三章（Skill）</td>
+</tr>
+<tr>
+<td>想做一個真的會上線的東西</td>
+<td>第四章</td>
+</tr>
+<tr>
+<td>卡住了、報錯了</td>
+<td>第五章</td>
+</tr>
+</tbody>
+</table>
+<p>指令以 <strong>OpenCode</strong> 為例（指南裝的就是它）。換成別家的 Agent，做法概念一樣，
+指令與設定檔位置看各家官網——<strong>別照抄別人的版本號</strong>，各家更新很快。</p>
+<hr />
+<h2>第一章：從「跑起來」到「每天在用」</h2>
+<h3>1.1 大部分人卡在第二次</h3>
+<p>第一次讓 Agent 讀個 Excel、印出欄位名稱，很有成就感。
+然後就沒有第二次了——因為第二次你得重新交代一遍你是誰、資料在哪、規矩是什麼，
+覺得「還不如自己做」。</p>
+<p><strong>這不是你的問題，是你還沒把交代的成本降下來。</strong> 三個階段：</p>
+<table>
+<thead>
+<tr>
+<th>階段</th>
+<th>你在做什麼</th>
+<th>對應工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一、能跑</strong></td>
+<td>每次從零交代，一次性任務</td>
+<td>內建功能就夠</td>
+</tr>
+<tr>
+<td><strong>二、不用重講</strong></td>
+<td>規矩寫下來，它自己會遵守</td>
+<td><code>AGENTS.md</code>、Memory</td>
+</tr>
+<tr>
+<td><strong>三、一句話啟動</strong></td>
+<td>整套流程寫成 SOP，說一句就跑完</td>
+<td>Skill</td>
+</tr>
+</tbody>
+</table>
+<p><strong>大部分人的價值是在第二、三階段才出現的。</strong> 停在第一階段，Agent 對你就只是個會讀檔的聊天視窗。</p>
+<h3>1.2 擴充什麼時候加</h3>
+<p>新手最常見的浪費，是第一天就想把 MCP、API Key、瀏覽器自動化全部設好，
+結果卡在設定上兩小時，一件正事都沒做。</p>
+<p><strong>正確順序是「等到痛了再加」</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>什麼時候</th>
+<th>加什麼</th>
+<th>為什麼不要提早加</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一天</td>
+<td><strong>什麼都不加</strong>，用內建的讀檔、寫檔、執行指令</td>
+<td>內建功能就有八成的用處</td>
+</tr>
+<tr>
+<td>開始有多個檔案、改壞過一次</td>
+<td><strong>Git</strong>（版本控制）</td>
+<td>改壞了能還原，這是第一個真正救命的東西</td>
+</tr>
+<tr>
+<td>東西要給別人看</td>
+<td><strong>GitHub</strong>（遠端 repo）</td>
+<td>也順便解決跨電腦同步</td>
+</tr>
+<tr>
+<td>每次都要手動下載雲端檔</td>
+<td><strong>雲端硬碟的 MCP</strong></td>
+<td>沒有反覆存取雲端檔的需求時，它只是多一個會壞的東西</td>
+</tr>
+<tr>
+<td>需要它去操作網頁</td>
+<td><strong>瀏覽器自動化</strong>（Playwright 等）</td>
+<td>最容易壞、最吃資源，能不加就不加</td>
+</tr>
+<tr>
+<td>需要它直接查資料庫</td>
+<td><strong>資料庫 MCP</strong></td>
+<td>院內系統另有權限問題，先確認可不可以再說</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>本手冊的立場</strong>：MCP 是「需要再加」，不是「必備」。
+《指南》3.3 的最小可行配置表講的是同一件事。</p>
+</blockquote>
+<h3>1.3 一個實際的判準</h3>
+<p>每次想加東西之前，問自己一句：</p>
+<blockquote>
+<p><strong>「這件事我上個月做過幾次？」</strong></p>
+</blockquote>
+<ul>
+<li>0 次 → 不要加</li>
+<li>1 次 → 記下來，先不加</li>
+<li>2 次以上 → 加，而且順便寫成 Skill（第三章）</li>
+</ul>
+<hr />
+<h2>第二章：AGENTS.md — 把你的規矩寫下來</h2>
+<h3>2.1 為什麼這是最高投報率的一件事</h3>
+<p>Agent 每開一個新對話，記憶就清空。你上次講過的「我們科的資料性別是 0=女」，
+下次它不知道。你每次都要重講，重講就會漏，漏了就出錯。</p>
+<p><code>AGENTS.md</code>（有些工具叫 <code>CLAUDE.md</code>）是放在專案資料夾裡的一個純文字檔，
+<strong>Agent 每次開工都會先讀它</strong>。寫一次，以後每次都算數。</p>
+<p>臨床比喻：科部 SOP。行政比喻：科內作業要點。
+——不是每次交班都口頭講一遍，是寫在牆上。</p>
+<h3>2.2 該寫什麼</h3>
+<p>四類，缺一不可：</p>
+<p><strong>① 你是誰、在做什麼</strong></p>
+<pre><code class="language-markdown">減重門診醫師。日常工作大量涉及臨床資料分析、病人衛教素材、月度成效報告。
+不是專職工程師 —— 解釋技術決策時講清楚「為什麼」和「會發生什麼」。
+</code></pre>
+<blockquote>
+<p>為什麼有用：同一句「幫我分析一下」，它對工程師和對醫師該給的東西完全不同。</p>
+</blockquote>
+<p><strong>② 你的資料有什麼陷阱</strong>（最重要，見 2.3）</p>
+<p><strong>③ 檔案在哪</strong></p>
+<pre><code class="language-markdown">主要工作目錄：C:\Users\你的帳號\OneDrive\文件
+Google Drive：掛在 G:\，但程式常常沒開，G: 不一定存在 —— 不要預設掛得起來
+</code></pre>
+<blockquote>
+<p>為什麼有用：省掉每次「檔案在哪」的來回，也避免它去猜一個不存在的路徑。</p>
+</blockquote>
+<p><strong>④ 做事的方式</strong></p>
+<pre><code class="language-markdown">- 事實優先於猜測。不確定的數字、路徑、檔案是否存在 —— 去查，不要憑印象講。
+- 動到檔案、雲端、或任何對外的操作之前，先確認清楚再做。
+- 跑失敗就說失敗並附輸出；跳過的步驟要講。
+</code></pre>
+<h3>2.3 實例：減重門診的四條鐵律</h3>
+<p>這四條全部是<strong>出過事才寫下來的</strong>。手冊裡放原文，是因為它們示範了「一條好規矩長什麼樣」：</p>
+<pre><code class="language-markdown">1. 性別編碼是 0 = 女、1 = 男。
+   曾經因為記反而讓整份月報數字顛倒。每次分析前用「平均身高」交叉驗證一次
+   （男性組平均身高應明顯較高），確認沒搞反再往下做。
+
+2. n &lt; 10 的組別不得當成亮點呈現。
+   小樣本的百分比極不穩定，可以列在附表，但不要寫進結論或摘要。
+
+3. 藥物（drug）欄位是自由文字，先掃過再信任分組統計。
+   同一種藥會有多種寫法。每個月先列出該欄所有 distinct 值，確認歸類正確後才做分組統計。
+
+4. 展示個案只用近一年內仍有回診紀錄者。
+   失聯個案的數據照樣留在統計裡，但不拿來做衛教素材或簡報展示。
+</code></pre>
+<p><strong>每一條都有三個共同點，你自己寫的時候照抄這個格式：</strong></p>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>例子</th>
+<th>少了會怎樣</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>具體的規則</strong></td>
+<td>「0 = 女、1 = 男」</td>
+<td>寫「注意性別欄」它不知道要注意什麼</td>
+</tr>
+<tr>
+<td><strong>為什麼</strong>（出過什麼事）</td>
+<td>「曾因記反讓月報數字顛倒」</td>
+<td>它會在你沒想到的情境下自作主張放寬</td>
+</tr>
+<tr>
+<td><strong>怎麼驗證</strong></td>
+<td>「用平均身高交叉驗證」</td>
+<td>規則只是宣示，沒有人（包括它）真的會檢查</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>第三條的普遍性最高</strong>：任何自由文字欄位（藥物、診斷、單位名稱、承辦人）
+在分組統計前都該先列 distinct 值。同一個東西被拆成好幾組，統計就整份報廢，
+而且<strong>看起來完全正常</strong>——這是最危險的一種錯。</p>
+</blockquote>
+<h3>2.4 常見錯誤</h3>
+<table>
+<thead>
+<tr>
+<th>錯誤</th>
+<th>為什麼不行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>寫得太抽象（「注意資料品質」）</td>
+<td>等於沒寫</td>
+</tr>
+<tr>
+<td>把一次性的事寫進去（「這次幫我看 7 月的檔」）</td>
+<td>下個月它還在找 7 月</td>
+</tr>
+<tr>
+<td>寫了規則但沒寫理由</td>
+<td>它遇到邊界情況會自己判斷，判斷方向不一定跟你一樣</td>
+</tr>
+<tr>
+<td>只寫「不要做什麼」，沒寫「該做什麼」</td>
+<td>它會避開你禁止的，然後做另一件你也不想要的事</td>
+</tr>
+<tr>
+<td>塞進病人資料當範例</td>
+<td><strong>絕對不行</strong>，這個檔會進版控、會被同步</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第三章：Skill — 做第二次就寫成 SOP</h2>
+<h3>3.1 判準只有一句話</h3>
+<blockquote>
+<p><strong>同一件事做第二次的時候，叫它把流程寫成 Skill。</strong></p>
+</blockquote>
+<p>不是第一次（你還不知道正確流程長什麼樣），也不是第五次（前面四次白做了）。</p>
+<h3>3.2 Skill 跟 AGENTS.md 差在哪</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AGENTS.md</th>
+<th>Skill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是什麼</td>
+<td><strong>一直都適用的規矩</strong></td>
+<td><strong>特定一件事的完整流程</strong></td>
+</tr>
+<tr>
+<td>什麼時候生效</td>
+<td>每次開工自動讀</td>
+<td>你叫它的時候才跑</td>
+</tr>
+<tr>
+<td>臨床比喻</td>
+<td>科部 SOP</td>
+<td>某項處置的標準流程單</td>
+</tr>
+<tr>
+<td>例子</td>
+<td>「性別 0=女 1=男」</td>
+<td>「跑這個月的門診成效分析」</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 一個 Skill 該包含什麼</h3>
+<p>不是把指令抄一遍就好。實際有用的 Skill 長這樣：</p>
+<pre><code class="language-markdown">1. 觸發語  —— 我說哪幾句話時要啟動這個流程
+2. 資料從哪來 —— 明確的路徑或來源，不要讓它每次問
+3. 步驟    —— 一步一步，包含「做完要檢查什麼」
+4. 產出什麼 —— 檔名、格式、存到哪
+5. 這個流程踩過的坑 —— 最有價值的一段
+</code></pre>
+<p>第 5 點是分水嶺。<strong>寫了坑的 Skill 才會越用越可靠</strong>，
+沒寫坑的 Skill 只是把同樣的錯誤自動化。</p>
+<h3>3.4 什麼樣的工作適合寫成 Skill</h3>
+<p>實際會反覆出現、值得寫的類型：</p>
+<ul>
+<li><strong>每月固定的統計分析</strong>（來源固定、產出格式固定、每次只有資料變）</li>
+<li><strong>建置某一類工具</strong>（例如篩檢量表工具：問卷 → 切點判定 → 分流建議，換個量表流程完全一樣）</li>
+<li><strong>開新專案的初始化</strong>（資料夾、版控、交接檔一次建好）</li>
+<li><strong>開工／收工</strong>（開工讀交接檔、收工寫交接檔並推上遠端）</li>
+<li><strong>動工前的需求釐清</strong>（避免做完才發現要的不是這個）</li>
+</ul>
+<p>共同點：<strong>流程穩定、只有輸入在變</strong>。
+反過來說，每次做法都不一樣的事情不要寫成 Skill，寫了也不會用。</p>
+<hr />
+<h2>第四章：專案怎麼開</h2>
+<h3>4.1 為什麼不能全部丟在桌面</h3>
+<p>散在桌面的檔案，Agent 找得到，但：
+- 改壞了沒得還原
+- 換一台電腦就全部重來
+- 三個月後你自己也想不起來當初為什麼那樣做</p>
+<p><strong>一個「專案」就是一個資料夾 ＋ 三份文件 ＋ 版控。</strong> 開一次要不了十分鐘。</p>
+<h3>4.2 三份文件</h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>作用</th>
+<th>什麼時候寫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agents.md</code></td>
+<td><strong>專案藍圖</strong>：這個專案要做什麼、目標清單、資料夾結構、工作約定</td>
+<td>開專案時寫，里程碑達成時更新</td>
+</tr>
+<tr>
+<td><code>handoff.md</code></td>
+<td><strong>交接檔</strong>：現在做到哪、下一步是什麼、有哪些注意事項</td>
+<td><strong>每次收工都要更新</strong></td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code>／<code>CLAUDE.md</code></td>
+<td><strong>規矩</strong>（第二章）</td>
+<td>出過事就補一條</td>
+</tr>
+</tbody>
+</table>
+<p><code>handoff.md</code> 是三份裡最容易被跳過、也最容易後悔的一份。
+它要回答的就三個問題：<strong>做到哪了？下一步？有什麼坑？</strong></p>
+<blockquote>
+<p><strong>實測心得</strong>：<code>handoff.md</code> 寫得夠好的話，換一台電腦、換一個 Agent、
+甚至隔兩個星期回來，都能直接接上。寫得不好就等於從頭來過。</p>
+</blockquote>
+<h3>4.3 三個層級（按需要往上加）</h3>
+<table>
+<thead>
+<tr>
+<th>層級</th>
+<th>放什麼</th>
+<th>什麼時候需要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L1 本地</strong></td>
+<td>專案資料夾 ＋ <code>agents.md</code> ＋ <code>handoff.md</code></td>
+<td><strong>一律要有</strong></td>
+</tr>
+<tr>
+<td><strong>L2 GitHub</strong></td>
+<td>遠端 repo</td>
+<td>要跨電腦、要備份、要給別人看</td>
+</tr>
+<tr>
+<td><strong>L3 筆記軟體</strong></td>
+<td>詳細的決策紀錄與工作日誌</td>
+<td>專案久、決策多，想記住「為什麼這樣決定」</td>
+</tr>
+</tbody>
+</table>
+<h3>4.4 跨電腦的兩條硬規則</h3>
+<ol>
+<li><strong>開工先 <code>git pull</code>、收工後 <code>git push</code>。</strong> 沒有例外。</li>
+<li><strong>專案資料夾不要放在雲端同步資料夾裡</strong>（OneDrive、Google Drive）。
+   理由見第五章 C6——<code>.git</code> 被雲端同步會產生鎖定衝突與「衝突複本」，
+   而且<strong>壞掉的時候很難查</strong>。要同步就走 git，不要兩套同步機制疊在一起。</li>
+</ol>
+<h3>4.5 公開與私有</h3>
+<ul>
+<li>專案 repo 預設<strong>私有</strong>。</li>
+<li>只有「要讓別人打開網頁用」的工具才需要公開。</li>
+<li><strong>注意連鎖後果</strong>：免費方案要讓網頁上線通常必須把 repo 設為公開，
+  這代表<strong>原始碼、設定、表單 ID 一併曝光</strong>。決定公開之前先想清楚裡面有什麼。</li>
+<li>病人資料、院內給付條文，<strong>一律不進任何 repo</strong>，私有的也不行。</li>
+</ul>
+<hr />
+<h2>第五章：我踩過的坑</h2>
+<blockquote>
+<p>九條，全部是實際卡住過、花時間查出來的。
+對「該不該給臨床端開工具」這種討論沒有幫助，但<strong>對想自己動手的人價值最高</strong>。</p>
+</blockquote>
+<h3>5.1 工具鏈本身</h3>
+<p><strong>C1｜Agent 裝好了卻完全不回話</strong>
+- 症狀：UI 起得來，但送出訊息後毫無反應，也沒有錯誤訊息。
+- 原因：版本回報成 <code>local</code>，把相依套件 pin 成一個 npm 上根本不存在的版本，
+  自訂工具 import 全部失敗。
+- <strong>怎麼辦</strong>：這類是上游軟體的 bug，不是你設定錯。
+  把 log 原封不動貼給 Agent 看（它修得動自己的工具鏈——這是實際發生過的事），
+  或直接查該專案的 issue 列表。<strong>不要先懷疑自己</strong>，也不要重灌三次。</p>
+<p><strong>C8｜含中文的 <code>.ps1</code> 腳本一執行就報語法錯</strong>
+- 症狀：明明語法沒問題，PowerShell 卻在中文字的位置炸出 parser error。
+- 原因：檔案沒存成 <strong>UTF-8 with BOM</strong>，PowerShell 5.1 會用系統預設編碼（CP950）去讀。
+- <strong>怎麼辦</strong>：含中文的 <code>.ps1</code> 一律存 <strong>UTF-8 with BOM</strong>。
+  這條在 Windows 上寫任何腳本都會遇到，記起來很划算。</p>
+<h3>5.2 產檔與版面</h3>
+<p><strong>C2｜設了中文字型，產出來卻不是那個字型</strong>
+- 原因：文書處理的函式庫各有各的字型設定元素，用錯了不會報錯，<strong>只會安靜地沒有作用</strong>。
+- <strong>怎麼辦</strong>：字型設完一定要<strong>打開檔案實際看</strong>。
+  「沒報錯」在版面這件事上完全不代表成功。</p>
+<p><strong>C3｜色塊包不住文字，文字溢出來</strong>
+- 原因：用空字串當間隔行。空的內容會被忽略，那一行改用預設字級，
+  實際行高比你指定的大 —— 色塊是照你指定的高度畫的，就包不住。
+- <strong>怎麼辦</strong>：間隔行放<strong>一個空白字元</strong>，不要放空字串。</p>
+<p><strong>C4｜產檔跑第二次就 <code>PermissionError</code></strong>
+- 原因：用 Office 的自動化介面產檔，程式跑完沒有把 Office 進程關掉，
+  檔案一直被鎖著。
+- <strong>怎麼辦</strong>：<strong>用完務必退出</strong>。寫成「不管成功失敗都要關」的形式，
+  不要只在成功的路徑上關。</p>
+<p><strong>C9｜簡報轉圖／轉 PDF 用哪個工具</strong>
+- 在 Windows 上<strong>首選 PowerPoint 本身的自動化介面</strong>——算圖的就是 PowerPoint 本人，
+  字型與版面完全一致。
+- LibreOffice 轉中文簡報<strong>常跑版</strong>，只能拿來抓「爆版、重疊」這種大問題，
+  字型細節不保證一致。
+- <strong>怎麼辦</strong>：最終版面確認一定要在有 PowerPoint 的那台做。
+  用替代工具看過就當作沒看過關鍵細節。搭配 C4 一起看。</p>
+<blockquote>
+<p><strong>這三條合起來是一個教訓</strong>：版面自動檢查通過 ≠ 版面沒問題。
+檢查程式有容差、也不檢查表格與圖片。<strong>新增的頁一定要算圖用眼睛看過。</strong></p>
+</blockquote>
+<h3>5.3 環境與同步</h3>
+<p><strong>C5｜某個截圖／自動化工具每次都逾時</strong>
+- <strong>怎麼辦</strong>：不要在同一個工具上耗超過兩次。換一個能達成同樣目的的方式
+  （例如改用瀏覽器的無介面模式），事後在交接檔記一筆「這台不要用那個」。
+  <strong>環境問題不值得你花一個下午證明它壞了。</strong></p>
+<p><strong>C6｜雲端同步資料夾裡放版控專案 → 鎖定衝突與衝突複本</strong>
+- <strong>怎麼辦</strong>：見 4.4。專案資料夾放本機路徑，同步只走 git。</p>
+<p><strong>C7｜寫死自己的使用者路徑，換一台電腦第一步就找不到檔</strong>
+- <strong>怎麼辦</strong>：路徑用環境變數（Windows 用 <code>%USERPROFILE%</code>），
+  或者乾脆跟 Agent 說「我桌面上的那個檔」讓它自己找。
+- 這條連帶影響<strong>別人能不能用你寫的東西</strong>——寫死路徑的腳本只有你自己跑得動。</p>
+<h3>5.4 額外一條：<strong>「壞掉」的記載，過一陣子要自己驗一次</strong></h3>
+<p>這條是寫這份手冊的當天才發生的，所以放進來。</p>
+<p>我的交接檔上寫了好幾個星期：「這台電腦的 PowerPoint 自動化介面壞掉，是兩個版本的 Office
+並存造成的衝突」。因為這樣，所有版面確認都改用另一套軟體，而那套軟體的中文字寬跟 PowerPoint
+不一樣，<strong>害我漏判了一次折行</strong>。</p>
+<p>當天實際去驗，結果是：<strong>沒有衝突，PowerPoint 自動化完全正常，缺的只是一個 Python 套件。</strong>
+裝上去，五分鐘後就能用 PowerPoint 本人算圖了。</p>
+<ul>
+<li><strong>為什麼會這樣</strong>：第一次遇到問題時，錯誤訊息看起來像 A 原因，就寫成了 A。
+  沒有人回頭檢查，那句話就一直被當成事實用下去。</li>
+<li><strong>怎麼辦</strong>：交接檔裡「某某東西壞掉、所以我們改用替代方案」這類記載，
+  <strong>隔一段時間、或換一台電腦時，花五分鐘重驗一次</strong>。
+  尤其是那個替代方案讓你付出額外代價的時候（這裡的代價就是版面判斷不準）。</li>
+<li><strong>順帶</strong>：寫記載時把<strong>你怎麼判斷的</strong>也寫進去（我當時看到什麼錯誤訊息、試了哪幾種方法），
+  下一個人才有辦法複驗。只寫結論的記載沒辦法被推翻，就會一直錯下去。</li>
+</ul>
+<h3>5.5 這些坑的共同教訓</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>教訓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1、C5</td>
+<td><strong>卡住時先懷疑環境與上游，不要先懷疑自己</strong>，也不要重裝三次</td>
+</tr>
+<tr>
+<td>C2、C3、C9</td>
+<td><strong>「沒報錯」不等於「做對了」</strong>，牽涉版面與外觀的事一定要用眼睛確認</td>
+</tr>
+<tr>
+<td>C4、C6</td>
+<td><strong>兩套機制疊在一起就會出事</strong>（沒關的進程、兩層同步）</td>
+</tr>
+<tr>
+<td>C7、C8</td>
+<td><strong>會換電腦的東西，第一天就不要寫死</strong>（路徑、編碼）</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td><strong>自己寫下的「壞掉」也要複驗</strong>，尤其當替代方案有代價時</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第六章：驗證 — 不要相信「跑完了」</h2>
+<p>Agent 說「已完成」的時候，它是真心的。但它跟你一樣會記錯（幻覺，見《指南》1.10）。</p>
+<p><strong>每一類產出都要有一個「怎麼知道它是對的」的方法</strong>，而且這個方法要寫進 AGENTS.md 或 Skill：</p>
+<table>
+<thead>
+<tr>
+<th>產出類型</th>
+<th>驗證方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>統計數字</td>
+<td>挑一個組別<strong>手算一次</strong>對得起來；用第三個變數交叉驗證（例：性別 × 平均身高）</td>
+</tr>
+<tr>
+<td>分組統計</td>
+<td>先列出該欄所有 distinct 值，確認沒有同物異名</td>
+</tr>
+<tr>
+<td>版面／簡報</td>
+<td><strong>算圖用眼睛看</strong>，自動檢查只能抓大問題</td>
+</tr>
+<tr>
+<td>程式與工具</td>
+<td>拿一筆你已知答案的資料跑一次</td>
+</tr>
+<tr>
+<td>文字稿</td>
+<td>數字、劑量、法條編號、引用來源<strong>一律回頭核對原始檔案</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>一個實用的習慣</strong>：每次它說「完成」，你問一句「<strong>你怎麼驗證的？</strong>」
+答不出具體方法的，就是還沒驗證。</p>
+</blockquote>
+<hr />
+<h2>第七章：資料紅線</h2>
+<p>這一章不在這份手冊展開——<strong>《初學者指南》第七章①、⑤已經完整寫過</strong>
+（資料安全底線、去識別化 ≠ 不能反推、權限邊界、費用預防、人機分工紅線）。</p>
+<p>這裡只補三條<strong>操作層面</strong>的提醒：</p>
+<ol>
+<li><strong>免費層通常會拿你的資料去訓練。</strong> 醫院的資料不要用免費層。</li>
+<li><strong>你自己訂的規範，要能在流程裡真的落實。</strong>
+   訂了「含姓名病歷號者不上雲端」，但流程第一步就從雲端抓個案檔——
+   規範是對的，只是沒有地方可以落實。<strong>發現這種矛盾要講出來，不要偷偷改掉規範。</strong></li>
+<li><strong>工具做成「不存資料、算完就丟」是可以的</strong>，而且在沒有院內身分驗證的情況下，
+   這往往是唯一站得住的做法。姓名記在現場紙本、雲端只留代碼與流水號，
+   事後靠紙本才對得回本人。</li>
+</ol>
+<hr />
+<h2>附錄 A：開始一個新專案的檢查清單</h2>
+<pre><code>□ 資料夾開在本機路徑（不要在 OneDrive / Google Drive 裡）
+□ git init
+□ agents.md：這個專案要做什麼、目標清單
+□ handoff.md：先建空的，收工時一定要寫
+□ AGENTS.md / CLAUDE.md：你的資料陷阱、檔案位置、做事方式
+□ .gitignore：產出物（pptx / docx / pdf）不進版控，能重產的就不要存
+□ 確認裡面沒有病人資料、沒有寫死的個人路徑
+□ 要跨電腦？→ 建遠端 repo（預設私有）
+□ 要給別人打開網頁用？→ 想清楚公開 repo 會曝光什麼再決定
+</code></pre>
+<h2>附錄 B：收工前的檢查清單</h2>
+<pre><code>□ handoff.md 更新了：做到哪、下一步、注意事項
+□ 這次踩到的新坑寫進去了（不寫下次一定重踩）
+□ git commit + push
+□ 產出物驗證過了（不是「跑完了」，是「看過／算過」）
+</code></pre>
+<hr />
+<blockquote>
+<p>這份手冊的內容全部來自實際做過的四個工具與一個巡迴演講專案，
+不是整理自網路文章。踩到新的坑會繼續往第五章加。</p>
+<p>觀念部分請看《AI Agent 醫療職場初學者指南》。</p>
+</blockquote>
+</article>
+<footer>© 2026 潘湘如醫師｜家醫科・可自由用於院內教育訓練與個人學習</footer>
+</div>
+</body>
+</html>

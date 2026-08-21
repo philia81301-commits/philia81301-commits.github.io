@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>潘湘如醫師｜臨床工具集</title>
 <meta name="description" content="潘湘如醫師（家醫科）的臨床工具與教學資源入口：減重、骨鬆、肌少症、幽門桿菌、肺炎鏈球菌疫苗、病歷書寫與 AI 教學。">
+<meta property="og:title" content="潘湘如醫師｜臨床工具集">
+<meta property="og:description" content="家醫科臨床工具與教學資源入口：減重、骨鬆、肌少症、幽門桿菌、肺炎鏈球菌疫苗、病歷書寫與 AI 教學。">
+<meta property="og:image" content="https://philia81301-commits.github.io/assets/og-share.jpg">
+<meta property="og:url" content="https://philia81301-commits.github.io/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@350;400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
@@ -57,7 +65,10 @@
     bottom:10%;
     width:min(22vw, 300px); opacity:.95; pointer-events:none;
   }
-  @media (max-width:1080px){.hero-rose{display:none;}} /* 窄螢幕沒有左側空白，收起 */
+  @media (max-width:1080px){
+    /* 窄螢幕沒有左側空白：改成右上角小玫瑰，品牌元素不斷線 */
+    .hero-rose{right:4%; bottom:auto; top:1.4rem; width:min(24vw, 110px); opacity:.88;}
+  }
   .hero-inner{
     width:100%; max-width:880px; margin:0 auto;
     padding:5.5rem 1.4rem 3.2rem;

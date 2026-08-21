@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 醫療職場初學者指南｜399 潘湘如醫師</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@350;400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fbfaf7;--card:#fff;--ink:#2e2a22;--sub:#7d7466;--line:#eae4d9;--accent:#9a6b2a;}
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#16130e;--card:#1f1a12;--ink:#ece5d8;--sub:#a3987f;--line:#322b1f;--accent:#d8ac5e;}
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+    font-weight:350;line-height:1.85;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:720px;margin:0 auto;padding:2.4rem 1.3rem 4rem;}
+  .back{color:var(--accent);text-decoration:none;font-size:.86rem;letter-spacing:.08em;}
+  article h1{font-family:"Noto Serif TC",serif;font-weight:900;font-size:1.8rem;margin:1rem 0 1.2rem;letter-spacing:.03em;line-height:1.35;}
+  article h2{font-family:"Noto Serif TC",serif;font-weight:700;font-size:1.3rem;margin:2.4rem 0 .8rem;
+    padding-bottom:.4rem;border-bottom:1px solid var(--line);letter-spacing:.05em;}
+  article h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:1.08rem;margin:1.8rem 0 .6rem;}
+  article p{margin:.7rem 0;}
+  article ul, article ol{margin:.7rem 0 .7rem 1.5rem;}
+  article li{margin:.3rem 0;}
+  article blockquote{margin:1.2rem 0;padding:.8rem 1.1rem;border-left:4px solid var(--accent);
+    background:var(--card);border-radius:0 8px 8px 0;}
+  article blockquote p{margin:.3rem 0;}
+  article table{border-collapse:collapse;margin:1.2rem 0;width:100%;font-size:.88rem;display:block;overflow-x:auto;}
+  article th, article td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top;}
+  article th{background:var(--card);font-weight:500;white-space:nowrap;}
+  article code{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:.08em .35em;font-size:.86em;}
+  article pre{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem;overflow-x:auto;margin:1rem 0;}
+  article pre code{border:none;background:none;padding:0;}
+  article hr{border:none;border-top:1px solid var(--line);margin:2rem 0;}
+  article a{color:var(--accent);}
+  article strong{font-weight:700;}
+  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--sub);font-size:.8rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="./">← 回 AI 教學頁</a>
+<article>
+<h1>AI Agent 醫療職場初學者指南</h1>
+<blockquote>
+<p>寫給醫院裡每一個要交東西出去的人 —— 醫師、護理、個管、行政、企劃。
+全部用你已經在做的事來比喻，臨床和行政兩邊的例子都有。</p>
+</blockquote>
+<hr />
+<h2>一句話先看懂</h2>
+<blockquote>
+<p><strong>AI Agent = 一個很能幹、但今天第一天上班的新人；
+你是那個要簽名負責的人。</strong></p>
+</blockquote>
+<p>它不是聊天機器人（只會一問一答），而是一個能自己規劃、自己跑腿、自己交作業的<strong>自動化助理</strong>。</p>
+<p>你不需要會寫程式，你需要的是「會帶新人」—— 而這件事你早就會了。</p>
+<hr />
+<h2>第零章：你已經在用 Agent 了</h2>
+<p>不管你是醫師、護理師、個管師還是行政承辦，你的日常工作本身就是一個
+「多 Agent 協作系統」。左邊那兩欄挑你熟的那一欄看就好：</p>
+<table>
+<thead>
+<tr>
+<th>角色／機制</th>
+<th>臨床場景</th>
+<th>行政場景</th>
+<th>對應 AI 概念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>你</strong></td>
+<td>主治醫師、護理長</td>
+<td>承辦人、組長、科長</td>
+<td>人類監督者（<strong>簽名負責的人</strong>）</td>
+</tr>
+<tr>
+<td><strong>新人</strong></td>
+<td>住院醫師</td>
+<td>新進助理、專案人力</td>
+<td><strong>Agent</strong></td>
+</tr>
+<tr>
+<td><strong>專責的人</strong></td>
+<td>NP、個管師、衛教師</td>
+<td>統計窗口、核銷窗口</td>
+<td>專門任務的 <strong>Subagent</strong></td>
+</tr>
+<tr>
+<td><strong>外部單位</strong></td>
+<td>外送檢驗所</td>
+<td>廠商、健保署／衛福部系統</td>
+<td>外部 <strong>API / Provider</strong></td>
+</tr>
+<tr>
+<td><strong>系統互通</strong></td>
+<td>HIS 連 NIS 連檢查系統</td>
+<td>公文系統連人事、會計系統</td>
+<td><strong>MCP 標準插座</strong></td>
+</tr>
+<tr>
+<td><strong>留底的地方</strong></td>
+<td>病歷系統</td>
+<td>公文檔號、科室共用資料夾</td>
+<td><strong>Git + 檔案系統</strong></td>
+</tr>
+<tr>
+<td><strong>交接</strong></td>
+<td>晨會交班</td>
+<td>業務交接單</td>
+<td><strong>handoff.md</strong></td>
+</tr>
+<tr>
+<td><strong>長期註記</strong></td>
+<td>病歷首頁註記</td>
+<td>承辦筆記本、前手留的眉批</td>
+<td><strong>Memory（記憶）</strong></td>
+</tr>
+<tr>
+<td><strong>流程手冊</strong></td>
+<td>科部 SOP、臨床路徑</td>
+<td>作業要點、範本檔</td>
+<td><strong>Skill（技能）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>所以你不是從零學起，你只是把原本用人的流程，換成用 AI。</strong></p>
+<blockquote>
+<p><strong>為什麼用「帶新人」當主比喻？</strong>
+因為不管哪個職類都經歷過：新人很聰明、學很快，但不熟院內的規矩，
+你交代得越清楚他做得越好，而<strong>最後簽名的還是你</strong>。
+這三件事，正好就是使用 AI Agent 的全部重點。</p>
+</blockquote>
+<hr />
+<h2>序幕故事：一個專案的日常 — 從 Chat 到 Agent 的差距</h2>
+<p>在看一堆名詞定義之前，先講一個你一定有感的場景。</p>
+<h3>你是這個計畫的承辦人</h3>
+<p>（不管你的職稱是醫師、個管師、專案助理還是行政組長 —— 只要「這個計畫的資料歸你管、
+報告要你交」，下面講的就是你的日常。）</p>
+<p>你的團隊每年跑好幾個社區據點 — 這個里辦篩檢、那個活動中心辦衛教講座、某個教會做血糖檢測。一年下來幾十場活動，累積了：</p>
+<ul>
+<li>每一場的<strong>簽到表 Excel</strong>（人名、年齡、性別、血糖值）</li>
+<li>現場拍的<strong>活動照片</strong>（一個活動好幾張）</li>
+<li>每個站的<strong>年度統計</strong>（多少人參加、多少異常轉介）</li>
+<li>每季要交的 <strong>KPI 指標達成率、落後項目檢討</strong></li>
+<li>年底要生一份<strong>期末成果報告</strong></li>
+<li>年度結束前要寫<strong>明年度工作計畫</strong></li>
+</ul>
+<p>這些文書工作每年都在做，內容差不多、流程差不多、連檢討的痛點都差不多。但你每次還是要從頭翻資料夾、手動搬數字、貼照片、調格式。</p>
+<hr />
+<h3>你用 ChatGPT 是這樣</h3>
+<pre><code>你：（打開 ChatGPT 網頁）
+你：幫我寫一份社區血糖篩檢成果報告
+
+ChatGPT：好的，請提供數據和資料。
+
+你：（手動打開 Excel，複製貼上數據到對話框）
+你：這是今年篩檢人數 850 人，異常率 12.3%，去年是 11.8%...
+
+ChatGPT：好的，以下是一份報告大綱...
+
+你：（拿到文字，自己打開 Word，手動排版）
+你：（再去資料夾挑照片，一張一張插進 Word）
+</code></pre>
+<p><strong>結果：ChatGPT 省掉的是「打草稿」那一步，你還是要手動餵資料、手動搬檔案、手動做簡報。</strong></p>
+<p>這叫做 <strong>Chat — 只是換了一個人幫你想大綱，跑腿的事你還是自己做。</strong></p>
+<hr />
+<h3>你用 AI Agent 是這樣</h3>
+<p>以下每一行都是「你對 Agent 下的一句指令」，後面的事 Agent 自己做完：</p>
+<h4>場景①：季 KPI 檢討（10 分鐘搞定）</h4>
+<pre><code>你：去讀 data/Q2_KPI.xlsx，把各站的達成率算出來，
+    跟 Q1 和去年 Q2 做對比，標出紅燈落後項目，
+    對每個落後項目建議改善方向，產出一份檢討報告。
+</code></pre>
+<p>Agent 做的事（你不必一件一件叫它做）：
+1. 找到檔案 → 讀取 Excel
+2. 自己寫程式算達成率、同期比較
+3. 判斷哪些項目低於 80%（紅燈）
+4. 根據過往資料建議改善方案
+5. 產出 Word 或 Markdown 報告</p>
+<blockquote>
+<p><strong>你只要覆核簽名 —— 就像主治看住院醫師寫的病摘，
+或科長看承辦擬的稿。</strong></p>
+</blockquote>
+<h4>場景②：年度成果報告（30 分鐘 vs 以前一整天）</h4>
+<pre><code>你：資料夾 2026_社區活動/ 裡有今年所有活動的 Excel 和照片。
+    幫我：
+    - 按月份列出所有活動
+    - 每場放一張代表性照片
+    - 統計全年總服務人次、血糖異常率、轉介率
+    - 對比去年數據，標出進步和退步的指標
+    - 挑出 3 個最成功的活動案例寫成亮點
+    - 產出 Word 檔 + PowerPoint 簡報檔
+</code></pre>
+<p>Agent 做的事：
+1. 掃描整個資料夾，列出所有活動
+2. 讀每場 Excel 算出該場統計數字
+3. 用程式挑選「參與人數最多」或「異常率最高」的那張照片
+4. 讀去年度同份報告做對比
+5. 把整體數據和亮點案例寫成文案
+6. 同時產出 Word（完整報告）和 PPT（簡報用）</p>
+<blockquote>
+<p><strong>你只要說一次需求，它自己去翻檔案、算數字、挑照片、排版、出兩種格式。</strong></p>
+</blockquote>
+<h4>場景③：「我忘了去年某場活動的數據」（5 秒）</h4>
+<pre><code>你：去年 3 月在仁愛里的那場篩檢，血糖異常率多少？
+</code></pre>
+<p>Agent：在資料夾找到去年檔案，回答：「仁愛里 2025/3/15 篩檢 112 人，異常 15 人，異常率 13.4%，高於當年平均的 11.2%。」</p>
+<blockquote>
+<p><strong>不用自己翻 Excel 一欄一欄找。</strong></p>
+</blockquote>
+<h4>場景④：明年度工作計畫草案</h4>
+<pre><code>你：讀今年四份季檢討報告，列出重複出現的檢討項目，
+    產出明年度改善計畫草案，格式比照去年計畫的架構。
+</code></pre>
+<p>Agent 做的事：
+1. 讀 Q1~Q4 檢討報告
+2. 歸納出「場地溝通常延遲」「衛教單張不夠用」「異常追蹤回診率低」等 recurrent issue
+3. 對每個問題給出具體改善建議
+4. 參考去年計畫的格式，產出明年計畫草案</p>
+<blockquote>
+<p><strong>不用把四份報告重新讀一遍才能歸納重點。</strong></p>
+</blockquote>
+<h4>場景⑤：會議紀錄 → 決議事項 → 追蹤表（散會當天就能發出去）</h4>
+<p>這一個是<strong>行政人員最有感</strong>的場景。開會兩小時，紀錄寫三天，寫完還要自己整理
+「誰要在什麼時候之前做什麼」，下次開會前再翻出來一項一項問。</p>
+<pre><code>你：這是昨天品管會議的逐字稿（或我的草稿），檔案在 meeting/1150725.txt。
+    幫我：
+    - 整理成正式會議紀錄格式（比照 templates/會議紀錄範本.docx）
+    - 把「決議事項」單獨抽出來，做成追蹤表：
+      決議內容 / 主辦單位 / 完成期限 / 目前狀態
+    - 跟上次會議的追蹤表比對，標出還沒結案的舊案
+    - 產出 Word 檔
+</code></pre>
+<p>Agent 做的事：</p>
+<ol>
+<li>讀逐字稿或草稿，分辨哪些是討論、哪些是<strong>決議</strong>（這兩件事人工最容易混在一起）</li>
+<li>套用你既有的範本格式，不是自己另外發明一種格式</li>
+<li>抽出決議 → 建成追蹤表，欄位齊全</li>
+<li>去讀上一次的追蹤表，把<strong>未結案的舊案接上來</strong>，不會每次都從零開始</li>
+<li>產出可以直接送陳核的 Word 檔</li>
+</ol>
+<blockquote>
+<p><strong>關鍵不在「幫你打字」，在於「決議事項不會漏」。</strong>
+漏掉一條決議，下次開會被問起來的是你。</p>
+</blockquote>
+<p><strong>⚠️ 這個場景的紅線：</strong></p>
+<table>
+<thead>
+<tr>
+<th>別做</th>
+<th>改成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>把會議錄音檔直接丟給雲端 AI</td>
+<td>錄音檔含與會者聲音＝個資，先確認院方規定；或自己先轉成逐字稿再去識別化</td>
+</tr>
+<tr>
+<td>人事、考績、廠商議價的會議照丟</td>
+<td>這類會議紀錄比病歷還敏感（見第七章①），不要進雲端</td>
+</tr>
+<tr>
+<td>直接把 AI 產的紀錄發出去</td>
+<td><strong>紀錄是你簽的</strong>。決議事項每一條都要自己對過，AI 會把「討論到」寫成「決議」</td>
+</tr>
+</tbody>
+</table>
+<h4>場景⑥：骨鬆衛教素材（產出的不是報告，是給病人看的東西）</h4>
+<p>前面五個場景產出的都是「給你自己或給長官看的報告」。
+但 Agent 同樣會做<strong>給病人看的衛教素材</strong> —— 而且這裡的規則不太一樣。</p>
+<pre><code>你：幫我做一份骨質疏鬆的病人衛教單張。
+    對象是剛驗出 T-score -2.8 的停經後女性。
+    用國小程度的中文，A4 一頁，包含：
+    - 骨鬆是什麼、為什麼不痛也要治療
+    - 鈣和維生素 D 每天要多少、從哪裡吃
+    - 防跌的居家注意事項
+    - 什麼情況要回診
+</code></pre>
+<p>Agent 做的事：</p>
+<ol>
+<li>依你指定的閱讀程度改寫（不是把教科書貼過來）</li>
+<li>排成 A4 一頁的版面，產出 Word 或 PDF</li>
+<li>你說「再做三個版本：一般病人 / 已經骨折過的 / 還在猶豫要不要打針的」，它照做</li>
+</ol>
+<p><strong>進階用法</strong> —— 衛教素材做成網頁：</p>
+<pre><code>你：把這份衛教內容做成一個網頁，掛上去讓病人掃 QR code 看。
+    手機上要好讀，字要大。
+</code></pre>
+<p>紙本印了就改不動，網頁改一次全部的人看到的都是新版。這件事 Agent 從產出到上架可以一次做完。</p>
+<blockquote>
+<h3>⚠️ 但衛教素材有一條額外的紅線</h3>
+<p>衛教內容會<strong>寫到藥物、劑量、和該不該治療</strong> —— 這正是 AI 最容易產生幻覺的地方。</p>
+<ul>
+<li><strong>每一個數字都要對回指引</strong>（鈣質建議量、維生素 D 劑量、T-score 判讀切點、用藥間隔）</li>
+<li>AI 講錯劑量的時候，語氣跟講對的時候一模一樣，看起來不會有異狀</li>
+<li><strong>最終版一定要你自己審過才發給病人</strong> —— 這在第七章⑤是明文紅線</li>
+</ul>
+<p>定位講清楚：<strong>Agent 幫你省掉「從空白頁開始」和「排版」的痛苦，
+但「這句話醫學上對不對」永遠是你的責任。</strong></p>
+</blockquote>
+<h4>場景⑦：門診評估工具 — 少寫病歷、一鍵生表單</h4>
+<p>前面的場景都是「Agent 幫你產出文件」。這一個不一樣 ——
+<strong>Agent 幫你做出一個工具，然後那個工具每天在幫你省時間。</strong></p>
+<pre><code>你：幫我做一份減重門診初診評估表，做成 Google 表單，
+    讓病人在候診時先填。欄位要有：
+    身高體重腰圍、飲食習慣、運動頻率、睡眠、
+    既往病史、目前用藥、這次想達成的目標。
+</code></pre>
+<p>Agent 做的事：</p>
+<ol>
+<li>依你給的欄位建出 Google 表單（不是給你步驟教學，是直接建好）</li>
+<li>填答自動進 Google Sheet</li>
+<li>你再說一句：「把這次的填答整理成一段可以貼進病歷的文字」→ <strong>省掉手打病歷</strong></li>
+</ol>
+<p><strong>真正的關鍵在後面：這條資料鏈是接起來的</strong></p>
+<pre><code>病人候診時填表單
+    ↓
+資料一開始就是結構化的（不是手寫在紙上）
+    ↓
+看診時：Agent 幫你把填答整理成病歷格式，你貼上、修一下、簽名
+    ↓
+月底做成效分析時：資料早就在 Sheet 裡，不用再 key 一次
+</code></pre>
+<blockquote>
+<p><strong>這是整份講義投報率最高的一個觀念：</strong>
+<strong>在資料「產生的那一刻」就讓它是結構化的，後面每一步都省事。</strong>
+你現在手寫病歷、月底再回頭把紙本 key 成 Excel —— 這中間的工全部可以省掉。</p>
+</blockquote>
+<p><strong>行政版的同一件事</strong>：活動報名表、課程簽到、滿意度問卷、教育訓練回饋 ——
+只要現在還是「紙本發下去 → 收回來 → 有人一張一張 key 進 Excel → 月底再統計」，
+就是同一個問題。改成表單之後，<strong>統計是即時的</strong>，年底要成果報告時數字早就在那裡了。</p>
+<pre><code>你：把去年的紙本滿意度問卷做成 Google 表單，
+    題目照舊，加一個「單位」下拉選單，
+    填答自動進 Sheet，並幫我做一個會自動更新的統計圖表頁。
+</code></pre>
+<p><strong>⚠️ 但表單收的是病人資料，套用第七章的分級原則：</strong></p>
+<table>
+<thead>
+<tr>
+<th>別做</th>
+<th>改成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表單收姓名、身分證號</td>
+<td>收病歷號後四碼，或自編流水代號</td>
+</tr>
+<tr>
+<td>直接把整份表單資料丟給雲端 AI 分析</td>
+<td>先把識別欄位拿掉再丟</td>
+</tr>
+<tr>
+<td>沒問過就把病人資料放 Google</td>
+<td>先確認貴院對「病人資料放境外雲端」的規定</td>
+</tr>
+</tbody>
+</table>
+<p>Google 表單的資料存在 Google 的伺服器 = 境外。這件事在做之前一定要先確認院方規範，
+不是「AI 能不能做到」的問題，是「合不合規」的問題。</p>
+<hr />
+<h3>這些不是假設 —— 已經在跑的任務</h3>
+<p>前面七個場景聽起來很美好，但你可能會想「實際上真的做得到嗎」。
+以下都是<strong>已經完成、產出檔案還在的</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>已經在跑的任務</th>
+<th>產出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>減重門診月度成效分析</strong></td>
+<td>統計分析 + 互動式 HTML 報告 + 簡報 + 更新版計畫書，已寫成 Skill，每月一句話啟動</td>
+</tr>
+<tr>
+<td><strong>醫院訪視跨年度分析</strong></td>
+<td>各院 113–115 年度比較分析，加上訪視回饋 Word 檔</td>
+</tr>
+<tr>
+<td><strong>醫療網期末簡報</strong></td>
+<td>正式版簡報 + 第四章補強建議</td>
+</tr>
+<tr>
+<td><strong>骨鬆衛教網站</strong></td>
+<td>骨折風險評估、藥物選擇、病人衛教三個頁面</td>
+</tr>
+<tr>
+<td><strong>信箱自動歸檔</strong></td>
+<td>收件匣依寄件人批次分類到既有資料夾</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>連你現在看的這份講義本身也是</strong> —— Markdown 原稿、Word 版、簡報，都是 Agent 產的。
+上面每一項第一次做都要花時間摸索，但摸索完寫成 Skill，第二次開始就是一句話。</p>
+</blockquote>
+<p><strong>打開就能看（都在線上，隨時可分享）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>產出</th>
+<th>網址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>減重門診輸入工具</strong>（場景⑦那個表單，打開就能試）</td>
+<td>https://philia81301-commits.github.io/weight-clinic/</td>
+</tr>
+<tr>
+<td>減重門診月度分析報告</td>
+<td>https://philia81301-commits.github.io/weight-clinic-reports/</td>
+</tr>
+<tr>
+<td>減重大冒險（病人衛教互動遊戲）</td>
+<td>https://philia81301-commits.github.io/weight-clinic-reports/game.html</td>
+</tr>
+<tr>
+<td>骨質疏鬆門診工具（風險評估 / 選藥 / 衛教）</td>
+<td>https://philia81301-commits.github.io/osteoporosis-clinic/</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 這幾個是<strong>公開</strong>頁面，所以裡面只有匿名彙總統計，沒有任何姓名或病歷號 ——
+這正是第七章①資料分級原則的實際應用：要放到公開網路上的，一律只能是綠燈等級的資料。</p>
+<p><strong>輸入工具要分清楚兩件事</strong>：公開的是「工具」（一個網頁），<strong>頁面本身不存任何病人資料</strong>，
+填的內容是在你自己的瀏覽器裡組成文字。但按下「送出」那一步會寫進 Google 表單 ——
+那是境外雲端，適用場景⑦講的那條紅線（不要收姓名身分證號、先確認院方規定）。</p>
+</blockquote>
+<hr />
+<h3>Chat vs Agent 對照表</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>ChatGPT</strong>（聊天）</th>
+<th><strong>AI Agent</strong>（代理）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>你要做的事</td>
+<td>手動找檔案、手動貼資料、手動下載、手動排版</td>
+<td>下指令 + 覆核成果</td>
+</tr>
+<tr>
+<td>它做的事</td>
+<td>給你文字建議</td>
+<td>讀檔案、跑程式、算數據、排版、產出檔案</td>
+</tr>
+<tr>
+<td>處理照片</td>
+<td>不能（只會說「建議放活動照片」）</td>
+<td>可以讀圖、挑圖、裁切、嵌入報告</td>
+</tr>
+<tr>
+<td>處理 Excel</td>
+<td>你貼它才看得到</td>
+<td>自己去資料夾找、讀取、計算</td>
+</tr>
+<tr>
+<td>跨檔案整合</td>
+<td>你要手動合併</td>
+<td>自己掃整個資料夾</td>
+</tr>
+<tr>
+<td>產出檔案</td>
+<td>文字而已，你另外開 Word/PPT 做</td>
+<td>直接產出 Word、PPT、PDF、圖表</td>
+</tr>
+<tr>
+<td>一年前的資料</td>
+<td>你貼它才看得到</td>
+<td>命令一下就去翻舊資料夾</td>
+</tr>
+<tr>
+<td>重複做一樣的事</td>
+<td>每次重新問、重新貼</td>
+<td>寫好一次指令，以後每年同一個指令就能跑</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>一句話記住差距</h3>
+<blockquote>
+<p><strong>ChatGPT 像是一個很懂的顧問，會教你怎麼寫 — 但跑腿的事你還是要做；</strong>
+<strong>AI Agent 是直接把報告寫好放你桌上，你負責覆核簽名就好。</strong></p>
+</blockquote>
+<p>下面的內容會告訴你這套東西實際上是怎麼運作的，裡面那些 API、MCP、Token 的名詞到底是什麼。</p>
+<hr />
+<h2>第一章：核心觀念（全部用職場比喻）</h2>
+<blockquote>
+<p>每個名詞都給兩個版本的比喻：<strong>臨床版</strong>和<strong>行政版</strong>。挑你熟的那個看就好，
+兩個講的是同一件事。</p>
+</blockquote>
+<h3>1.1 模型（Model） vs Agent</h3>
+<pre><code>模型 = 那個人的腦袋和知識
+Agent = 那個人的手和腳
+
+同一顆大腦（同一個模型），裝在不同 Agent 身上，
+效率差很多。
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>臨床比喻</th>
+<th>行政比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>模型</strong></td>
+<td>主治醫師的知識</td>
+<td>一個很會寫的人的文筆與判斷</td>
+</tr>
+<tr>
+<td><strong>Agent</strong></td>
+<td>住院醫師的手和腳</td>
+<td>願意跑腿、會用系統的助理</td>
+</tr>
+<tr>
+<td><strong>差別</strong></td>
+<td>同一個主治配不同團隊，效率差很多</td>
+<td>同樣的文筆，一個只會口頭教你、一個直接幫你把公文擬好</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>模型（Model）</strong>：AI 的「思考能力」，例如 DeepSeek、Claude、GPT</li>
+<li><strong>Agent（代理）</strong>：幫你做事的那個程式，例如 OpenCode、Claude Code、Cursor</li>
+</ul>
+<blockquote>
+<p>重點：你挑的是 Agent（團隊），不是只挑模型（大腦）。好 Agent 配普通模型，常常比普通 Agent 配好模型更實用。</p>
+</blockquote>
+<h3>1.2 Token（代幣）</h3>
+<pre><code>AI 的計價和記憶單位。
+臨床：像健保點數 — 每一句話都在消耗點數。
+行政：像影印張數 — 印越多算越多，你不會把整箱檔案全影印一遍。
+
+換算（中文特別吃 token）：
+  英文：1 token ≈ 0.75 個英文單字
+  中文：1 個中文字 ≈ 1～2 個 token
+</code></pre>
+<p><strong>注意方向</strong>：中文是「一個字要花一到兩個 token」，不是「一個 token 裝得下一個字」。
+一份 3,000 字的中文報告，大約是 4,000～6,000 token。你把整份計畫書貼進去，token 消耗會比你直覺估的多好幾倍。</p>
+<p>每次你問一句話，AI 回一段話，雙方的 token 都會被加總計費。</p>
+<h3>1.3 Context Window（上下文視窗）</h3>
+<pre><code>AI 一次能記住的最大資訊量。
+
+臨床：像病歷可調閱的範圍
+  小型模型 = 只能看「本次病歷」（128K token）
+  大型模型 = 可以翻完整本病歷簿（200K～1M token）
+
+行政：像你桌上攤得開的資料
+  小型模型 = 桌面只放得下這一案的卷宗
+  大型模型 = 整個檔案櫃搬到你面前
+</code></pre>
+<p><strong>實戰意義</strong>：對話越長，AI 越容易忘記前面講過什麼。
+就像你看診到第 80 個病人已經記不得第一位的臉；
+或是一場會開到第四個議案，前面講過什麼已經模糊了。</p>
+<h3>1.4 System Prompt（系統提示詞）</h3>
+<pre><code>寫在設定檔裡的「一直都適用的規矩」。
+告訴 Agent：遇到什麼情況該怎麼做、什麼規則要遵守。
+
+臨床：像「糖尿病共照網收案流程」
+行政：像「本科公文一律用這個範本、金額都要含稅、
+      承辦人欄位不要留空」這種每次都要交代的事
+</code></pre>
+<p>存在 <code>AGENTS.md</code>、<code>CLAUDE.md</code>、<code>opencode.json</code> 這些檔案裡。</p>
+<h3>1.5 API（應用程式介面）</h3>
+<pre><code>兩個軟體之間說好的溝通格式。
+
+臨床：像檢查申請單 — 不管哪一科開腹部超音波，
+      單子上就是那幾個欄位，放射科收到就知道怎麼做。
+行政：像請購單 / 差旅報支單 — 欄位固定，
+      不管誰填、送到哪一科，總務都看得懂。
+</code></pre>
+<p><strong>API Key</strong> 就像<strong>員工證</strong> — 每次呼叫 API 都要刷這張證。被偷了別人可以冒用你的名義叫 AI，你付錢。</p>
+<h3>1.6 MCP（模型上下文協定）</h3>
+<pre><code>一個「通用插座標準」，讓 Agent 可以統一方式連接各種外部服務。
+
+以前：每台儀器 / 每套系統有自己的接頭和帳號
+      （臨床：A 牌儀器用 A 接頭；行政：公文系統一組帳號、
+       人事系統另一組、差勤又另一組）
+MCP：像 USB-C 接頭 — 不管什麼裝置，一條線就通
+</code></pre>
+<p><strong>MCP vs API 的差別：</strong>
+- API = 單一服務的窗口（只連 Google Drive）
+- MCP = 所有窗口的統一管理員（一種方式連 Google Drive、資料庫、檔案系統）</p>
+<h3>1.7 Provider（提供者）</h3>
+<pre><code>你跟哪家公司租 AI 大腦。
+
+臨床比喻：檢驗所品牌
+行政比喻：委外廠商 / 簽約的顧問公司
+
+- DeepSeek = 便宜的區域廠商（夠用、便宜、中文強）
+- Anthropic（Claude）= 醫學中心等級（貴、準確、程式強）
+- OpenAI（GPT）= 另一家醫學中心（多模態強）
+</code></pre>
+<blockquote>
+<p>各家型號更新很快。挑之前先去官網看<strong>當下</strong>的型號名稱和價目，不要照抄舊講義上的型號。</p>
+</blockquote>
+<h3>1.8 Tools（工具）</h3>
+<pre><code>Agent 的工具箱。
+
+| Agent 的工具 | 臨床上等於 | 行政上等於 |
+  讀檔案      → 翻病歷        → 調卷宗、翻舊公文
+  寫程式      → 跑數據分析    → 用 Excel 樞紐分析算統計
+  搜網路      → 查 UpToDate   → 查法規、查函釋、查招標公告
+  操作瀏覽器  → 登入院內系統  → 登入公文系統、上傳報表
+</code></pre>
+<h3>1.9 RAG（檢索增強生成）</h3>
+<pre><code>AI 先去資料庫找資料，再根據找到的資料回答問題。
+不是憑印象亂講。
+
+臨床：翻病歷 + 查 UpToDate + 看檢驗結果 → 才給你答案
+行政：先調出原始函文和去年的簽 → 才回答「這案以前怎麼辦的」
+</code></pre>
+<h3>1.10 Hallucination（幻覺）</h3>
+<pre><code>AI 自信滿滿地講出錯誤資訊。
+
+臨床：病人說「我上次抽血正常」，結果翻病歷 HbA1c 9.2%。
+行政：新人跟你說「這個上次是照第三點辦的」，
+      你去翻卷宗才發現根本沒有第三點。
+</code></pre>
+<p><strong>最危險的地方</strong>：AI 講錯的時候，語氣跟講對的時候<strong>一模一樣</strong> ——
+不會結巴、不會說「我不太確定」。它會編出看起來很像真的法條編號、
+很像真的統計數字、很像真的參考文獻。</p>
+<p><strong>永遠要覆核 AI 的輸出</strong> —— 就像你要覆核住院醫師寫的病摘，或承辦擬的稿。</p>
+<h3>1.11 Memory（記憶）</h3>
+<pre><code>Session 結束，對話就清空了。
+但寫進 Memory 的東西，下次會自動帶出來。
+
+Context Window = 這次講過的話（結束就沒了）
+Memory         = 長期註記（下次自動看到）
+
+臨床：病歷首頁註明「NKDA、糖尿病 10 年、對 metformin 腸胃不耐」
+行政：前手在卷宗封面寫「這案的主管機關是 OO 科，
+      窗口姓陳，每年 9 月要先發文詢問意願」
+</code></pre>
+<p>兩個都是同一件事：<strong>一開就看到，不用重問一遍。</strong></p>
+<p><strong>和 System Prompt 差在哪？</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>誰寫的</th>
+<th>臨床比喻</th>
+<th>行政比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>System Prompt</strong>（AGENTS.md）</td>
+<td><strong>你主動</strong>寫下的規則</td>
+<td>貼在牆上的科部 SOP</td>
+<td>科內共用的作業要點</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td><strong>Agent 自己</strong>在過程中累積記下來的</td>
+<td>它幫你補在病歷首頁的註記</td>
+<td>它幫你寫在卷宗封面的眉批</td>
+</tr>
+</tbody>
+</table>
+<p><strong>你該放什麼進 Memory：</strong>
+- 你的身分和工作內容
+  - 臨床版：「我是減重門診醫師，主要做臨床資料分析」
+  - 行政版：「我是 OO 科承辦，負責這個計畫的核銷和年度報告」
+- 反覆踩過的坑
+  - 臨床版：「性別編碼是 0=女、1=男」「n&lt;10 不能當亮點」
+  - 行政版：「經費表的金額一律含稅」「單位名稱要用全銜，不能簡稱」
+- 慣用的檔案位置、輸出格式偏好</p>
+<blockquote>
+<p><strong>重點：Memory 是「講一次，以後都算數」。</strong> 你發現自己第三次跟 Agent 解釋同一件事，
+那件事就該寫進 Memory 了。</p>
+</blockquote>
+<h3>1.12 Skill（技能）</h3>
+<pre><code>把一整套重複的流程，寫成一份 SOP 手冊給 Agent。
+以後只要說一句話，它就照著手冊一步一步做完。
+
+臨床：「糖尿病共照網收案流程」印成 SOP，
+      新來的住院醫師照著做，不會漏步驟。
+行政：把「年度計畫核銷該備哪些文件、送哪幾關」寫成一份作業要點，
+      換誰承辦都不會漏件。
+</code></pre>
+<p><strong>Prompt vs Skill：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>是什麼</th>
+<th>臨床比喻</th>
+<th>行政比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompt</strong></td>
+<td>你這次口頭交代的事</td>
+<td>查房時交代住院醫師的醫囑</td>
+<td>今天口頭交代助理去辦的一件事</td>
+</tr>
+<tr>
+<td><strong>Skill</strong></td>
+<td>寫成手冊、以後一句話啟動</td>
+<td>印成 SOP 貼在護理站，誰來都照做</td>
+<td>建成作業要點＋範本，換人也照樣跑</td>
+</tr>
+</tbody>
+</table>
+<p><strong>實例</strong> —— 每個月的減重門診成效分析：</p>
+<pre><code>沒有 Skill：
+  每次都要重講一遍「去 Drive 抓最新評估表 →
+  跑統計 → 注意性別編碼 → 藥物欄位先核對，同一種藥常打法不同 →
+  產 HTML 報告 + PPT + 更新計畫書 → 上傳雲端」
+
+寫成 Skill 之後：
+  你：「跑這個月的減重分析」
+  Agent：（照著 SOP 一步一步做完，包含所有你交代過的注意事項）
+</code></pre>
+<p><strong>什麼時候該寫成 Skill：</strong>
+- 同一套流程做過<strong>第二次</strong>的時候（第一次是摸索，第二次就該固化）
+- 步驟多到你自己會漏掉
+- 有「每次都要提醒它」的注意事項（寫進 Skill 就不用再提醒）</p>
+<blockquote>
+<p><strong>這是投報率最高的一步。</strong> 第一次做要花一個下午，寫成 Skill 之後，
+以後每個月都是一句話。</p>
+<p>臨床端適合的：月報、訪視分析、信件歸檔。
+行政端適合的：<strong>會議紀錄＋決議追蹤表、月報表彙整、核銷文件檢查、
+評鑑佐證清單</strong> —— 只要是「每個月／每季都做一次、步驟一樣」的，全都適合。</p>
+</blockquote>
+<hr />
+<h2>第二章：技巧篇 — 省上下文、省錢、更聰明</h2>
+<h3>2.1 什麼是上下文（Context）</h3>
+<p>白話：<strong>你跟 Agent 之間到目前為止講過的所有話。</strong></p>
+<p>每一句話都佔記憶空間。就像病歷越寫越厚翻到後面越慢，
+或是卷宗越夾越厚，找一份附件要翻半天。</p>
+<blockquote>
+<p><strong>核心鐵律：只給 Agent 它「現在這一步」需要的資訊，
+不要把整本病歷／整箱卷宗都塞給它。</strong></p>
+</blockquote>
+<h3>2.2 開新 Session（開新病歷）</h3>
+<table>
+<thead>
+<tr>
+<th>情況</th>
+<th>別這麼做</th>
+<th>應該這麼做</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>換任務主題</td>
+<td>在同個對話繼續問不相關的</td>
+<td>結束對話，開新的</td>
+</tr>
+<tr>
+<td>對話超過 30 輪</td>
+<td>繼續問，Agent 開始忘東忘西</td>
+<td>總結進度 → 寫進交接檔 → 開新的一局</td>
+</tr>
+<tr>
+<td>要分析的檔案變了</td>
+<td>讓 Agent 從記憶中找舊資料</td>
+<td>重開，讓它重新讀最新檔案</td>
+</tr>
+<tr>
+<td>切換專案</td>
+<td>在同一個視窗繼續</td>
+<td>不同專案用不同 session</td>
+</tr>
+</tbody>
+</table>
+<pre><code>臨床比喻：
+  你不會在 A 病人的病歷裡寫 B 病人的醫囑。
+  每個病人（任務）開一份新病歷（session）。
+
+行政比喻：
+  你不會把 A 案的公文夾進 B 案的卷宗。
+  一案一卷，封面（交接檔）寫清楚前次辦到哪就好。
+</code></pre>
+<h3>2.3 用免費 Agent 分工</h3>
+<pre><code>不會叫主治去推心電圖車，也不會叫科長去印會議資料。
+同樣的：
+- 讀檔案、搜資料 → 免費的小模型
+- 寫複雜程式、推理 → 付費的大模型
+</code></pre>
+<p><strong>實例流程：</strong></p>
+<pre><code>你對主 Agent 說：「幫我把這批資料整理成報告」
+
+  主 Agent（你直接對話的那個新人）
+      ├── 叫 Explore Subagent 去找檔案      （臨床：實習醫師 / 行政：工讀生）
+      ├── 叫 Analysis Subagent 寫程式跑統計 （臨床：NP     / 行政：統計窗口）
+      └── 主 Agent 統整結果寫報告給你，你覆核簽名
+
+  優點：主對話只記錄結論，不塞入中間所有程式碼
+  → context 用量省 50~70%
+</code></pre>
+<h3>2.4 實戰技巧總表</h3>
+<table>
+<thead>
+<tr>
+<th>技巧</th>
+<th>作法</th>
+<th>臨床比喻</th>
+<th>行政比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>總結再開</strong></td>
+<td>到一段落叫 Agent 用 3 句話總結，寫進交接檔，開新 session</td>
+<td>交班只講重點，不從頭背病歷</td>
+<td>交接單只寫辦到哪，不重述整卷</td>
+</tr>
+<tr>
+<td><strong>不要全文貼</strong></td>
+<td>說「去讀 <code>data/血糖.csv</code>」而不是貼整份內容</td>
+<td>叫護理師去看 27 床的血糖單，不是把整本病歷唸給她聽</td>
+<td>給他檔案位置，不是把整箱卷宗搬到他桌上</td>
+</tr>
+<tr>
+<td><strong>規則寫進設定檔</strong></td>
+<td>反覆要交代的規矩寫進 AGENTS.md</td>
+<td>性別編碼、n&lt;10 規則貼在牆上，不用每天晨會重複</td>
+<td>「金額含稅、單位用全銜」寫進作業要點</td>
+</tr>
+<tr>
+<td><strong>一次只做一件事</strong></td>
+<td>不要同時分析 + 畫圖 + 寫報告 + 寄信</td>
+<td>不會同時做兩台手術</td>
+<td>不會一邊擬稿一邊核銷一邊接電話</td>
+</tr>
+<tr>
+<td><strong>留 checkpoint</strong></td>
+<td>每完成一段就 commit（存版本），出錯可回溯</td>
+<td>每次換班完成交班紀錄</td>
+<td>每次陳核前留一份存查版</td>
+</tr>
+<tr>
+<td><strong>講第三次就寫進 Memory</strong></td>
+<td>反覆解釋的事寫成記憶，以後自動帶出來</td>
+<td>病歷首頁的長期註記</td>
+<td>卷宗封面的眉批</td>
+</tr>
+<tr>
+<td><strong>做第二次就寫成 Skill</strong></td>
+<td>重複的流程固化成 SOP，以後一句話啟動</td>
+<td>印成 SOP 貼護理站</td>
+<td>建成作業要點＋範本檔</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第三章：必要的連接 — API / MCP / Provider</h2>
+<h3>一句話看懂整條鏈</h3>
+<pre><code>你打開 PowerShell（你辦公桌上那台電腦）
+  啟動 Claude Code（你的助理）
+    它透過 API Key（員工證）
+      呼叫 DeepSeek（委外的廠商／檢驗所）
+        去算你的資料
+    並透過 MCP（院內系統的統一插座）
+      去 Google Drive（雲端檔案櫃）
+        讀取要分析的檔案
+    最後回報結果給你（你覆核簽名）
+</code></pre>
+<h3>3.1 各種 API 用途</h3>
+<table>
+<thead>
+<tr>
+<th>API 名稱</th>
+<th>做什麼的</th>
+<th>免費？</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM API</strong>（DeepSeek / OpenAI / Anthropic）</td>
+<td>呼叫 AI 大腦 — 你的問題送雲端，模型算完送回</td>
+<td>DeepSeek 有免費；其他付費</td>
+</tr>
+<tr>
+<td><strong>GitHub API</strong></td>
+<td>同步程式碼、開 issue</td>
+<td>公有 repo 免費</td>
+</tr>
+<tr>
+<td><strong>Google Drive API</strong></td>
+<td>讀寫雲端硬碟檔案</td>
+<td>有免費額度</td>
+</tr>
+<tr>
+<td><strong>Obsidian Local REST API</strong></td>
+<td>讀寫 Obsidian 筆記（社群外掛，非官方內建）</td>
+<td>免費</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Playwright 不在這張表裡</strong> — 它是一套「自動操作瀏覽器」的程式庫，不是你去跟別人申請的雲端 API。Agent 是把它裝在你電腦上直接驅動瀏覽器。</p>
+</blockquote>
+<h3>3.2 各種 MCP Server 用途</h3>
+<table>
+<thead>
+<tr>
+<th>MCP Server</th>
+<th>做什麼的</th>
+<th>臨床用在哪</th>
+<th>行政用在哪</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Filesystem MCP</strong></td>
+<td>讀寫本機檔案</td>
+<td>讀去識別化資料、寫報告</td>
+<td>掃共用資料夾、彙整月報表</td>
+</tr>
+<tr>
+<td><strong>Google Drive MCP</strong></td>
+<td>直接存取 Google Drive</td>
+<td>讀雲端月報、上傳結果</td>
+<td>收各單位回傳的表單、統一歸檔</td>
+</tr>
+<tr>
+<td><strong>GitHub MCP</strong></td>
+<td>操作 GitHub</td>
+<td>程式碼與網頁版本管理</td>
+<td>講義／表單的版本留底</td>
+</tr>
+<tr>
+<td><strong>Obsidian MCP</strong></td>
+<td>讀寫 Obsidian vault</td>
+<td>整理臨床筆記</td>
+<td>整理業務知識庫</td>
+</tr>
+<tr>
+<td><strong>Playwright MCP</strong></td>
+<td>操作瀏覽器</td>
+<td>登入院內系統查資料</td>
+<td>上傳報表、抓公告與法規</td>
+</tr>
+<tr>
+<td><strong>Database MCP</strong></td>
+<td>下 SQL 查資料庫</td>
+<td>直接查 HIS 分析數據</td>
+<td>查業務系統做統計</td>
+</tr>
+<tr>
+<td><strong>Email MCP</strong></td>
+<td>讀寫郵件</td>
+<td>整理信箱、自動歸檔</td>
+<td>收件匣依來文單位歸檔</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 你的最小可行配置（初學者必備）</h3>
+<pre><code>┌─────────────────────────────────────────┐
+│  你的電腦                                │
+│    OpenCode Agent                        │
+│      ├── 內建工具（讀檔、寫檔、執行命令） │
+│      └── MCP（選配，看需要）             │
+│                                          │
+│   ↓ API                                  │
+│                                          │
+│   一個免費層的 Provider（模型）           │
+│   → 你目前 AI 的大腦                     │
+└─────────────────────────────────────────┘
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>連接</th>
+<th>必要性</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM API（Provider）</strong></td>
+<td>⭐ 必要</td>
+<td>沒這個 Agent 就是空殼</td>
+</tr>
+<tr>
+<td><strong>本機檔案系統</strong></td>
+<td>⭐ 必要</td>
+<td>內建就有</td>
+</tr>
+<tr>
+<td><strong>Git / GitHub</strong></td>
+<td>👍 強烈建議</td>
+<td>版本控制 + 跨電腦同步</td>
+</tr>
+<tr>
+<td><strong>終端機（PowerShell）</strong></td>
+<td>⭐ 必要</td>
+<td>你跟 Agent 對話的介面</td>
+</tr>
+<tr>
+<td><strong>Playwright（瀏覽器）</strong></td>
+<td>👌 需要再加</td>
+<td>操作網頁</td>
+</tr>
+<tr>
+<td><strong>Google Drive MCP</strong></td>
+<td>👌 需要再加</td>
+<td>存取雲端文件</td>
+</tr>
+<tr>
+<td><strong>資料庫 MCP</strong></td>
+<td>👌 需要再加</td>
+<td>直接查 HIS 或業務系統</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第四章：電腦術語白話說明</h2>
+<table>
+<thead>
+<tr>
+<th>術語</th>
+<th>白話解釋</th>
+<th>臨床比喻</th>
+<th>行政比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>終端機（Terminal）</strong></td>
+<td>用「打字」下指令的視窗，不是點滑鼠</td>
+<td>打 <code>order Metformin</code> 而不是開選單點藥</td>
+<td>直接輸入檔號調卷，不用一層層點資料夾</td>
+</tr>
+<tr>
+<td><strong>PowerShell</strong></td>
+<td>Windows 的終端機名稱，功能更強</td>
+<td>醫令系統 — 除了開藥還能排檢查</td>
+<td>一次處理整個資料夾的檔案，不用一個個開</td>
+</tr>
+<tr>
+<td><strong>CLI（命令列介面）</strong></td>
+<td>終端機的正式名稱，用文字跟電腦互動</td>
+<td>打字 vs 點選單的差別</td>
+<td>寫一句話交代完，vs 點十幾個按鈕</td>
+</tr>
+<tr>
+<td><strong>本機（Local）</strong></td>
+<td>你自己這台電腦，資料不外流</td>
+<td>院內自己驗 — 資料不外送</td>
+<td>檔案只在科內流通，沒有出去過</td>
+</tr>
+<tr>
+<td><strong>雲端（Cloud）</strong></td>
+<td>別人的伺服器機房，租來用</td>
+<td>送外送檢驗所 — 快但要網路</td>
+<td>委外處理 — 省事，但資料進到別人手上</td>
+</tr>
+<tr>
+<td><strong>本地端模型</strong></td>
+<td>在自己電腦跑 AI，不需網路</td>
+<td>POCT 床邊檢驗 — 馬上知道但選擇少</td>
+<td>自己科內處理，不用會辦其他單位</td>
+</tr>
+<tr>
+<td><strong>Git</strong></td>
+<td>每一次修改都有紀錄，可回溯</td>
+<td>電子病歷修改日誌</td>
+<td>公文版次紀錄 — 誰改的、改了什麼、何時改</td>
+</tr>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>Git 的中央存放處，可跨電腦同步</td>
+<td>病歷中央檔案室</td>
+<td>檔案室 — 換電腦、換人都調得到</td>
+</tr>
+<tr>
+<td><strong>API Key</strong></td>
+<td>一組密碼鑰匙，呼叫外部服務用</td>
+<td>院際合作帳號密碼</td>
+<td>系統帳號密碼</td>
+</tr>
+<tr>
+<td><strong>環境變數</strong></td>
+<td>存在系統裡的設定，程式自動讀取</td>
+<td>員工證號 — 登入自動帶入</td>
+<td>表單的自動帶入欄位，不用每張都重打</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第五章：名詞速查表</h2>
+<table>
+<thead>
+<tr>
+<th>名詞</th>
+<th>一句話</th>
+<th>臨床比喻</th>
+<th>行政比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Model（模型）</strong></td>
+<td>AI 的大腦</td>
+<td>主治醫師的知識</td>
+<td>一個很會寫的人的文筆與判斷</td>
+</tr>
+<tr>
+<td><strong>Agent（代理）</strong></td>
+<td>幫你跑腿的程式</td>
+<td>住院醫師 / NP</td>
+<td>會用系統的助理</td>
+</tr>
+<tr>
+<td><strong>Token</strong></td>
+<td>AI 的最小計價與記憶單位</td>
+<td>健保點數</td>
+<td>影印張數</td>
+</tr>
+<tr>
+<td><strong>Context Window</strong></td>
+<td>AI 一次能記住的資訊量</td>
+<td>病歷可調閱範圍</td>
+<td>桌上攤得開的卷宗量</td>
+</tr>
+<tr>
+<td><strong>System Prompt</strong></td>
+<td>Agent 的角色說明書</td>
+<td>科部 SOP</td>
+<td>科內作業要點</td>
+</tr>
+<tr>
+<td><strong>Memory（記憶）</strong></td>
+<td>跨 session 保留的長期資訊</td>
+<td>病歷首頁的長期註記</td>
+<td>卷宗封面的眉批</td>
+</tr>
+<tr>
+<td><strong>Skill（技能）</strong></td>
+<td>把重複流程寫成 SOP，一句話啟動</td>
+<td>臨床路徑</td>
+<td>標準作業流程＋範本檔</td>
+</tr>
+<tr>
+<td><strong>Subagent</strong></td>
+<td>主 Agent 派出去做子任務的分身</td>
+<td>派去跑腿的實習醫師</td>
+<td>支援的工讀生 / 統計窗口</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td>兩個軟體溝通的標準格式</td>
+<td>檢查申請單</td>
+<td>請購單 / 報支單</td>
+</tr>
+<tr>
+<td><strong>API Key</strong></td>
+<td>呼叫 API 的密碼</td>
+<td>員工證</td>
+<td>系統帳號密碼</td>
+</tr>
+<tr>
+<td><strong>MCP</strong></td>
+<td>統一管理外部連接的通用插座</td>
+<td>USB-C 接頭 / 院內資訊系統</td>
+<td>一組帳號通所有系統</td>
+</tr>
+<tr>
+<td><strong>MCP Server</strong></td>
+<td>某一個外部服務的轉接頭</td>
+<td>連 Google Drive 那條線</td>
+<td>連公文系統那條線</td>
+</tr>
+<tr>
+<td><strong>Provider</strong></td>
+<td>提供 AI 模型的廠商</td>
+<td>檢驗所品牌</td>
+<td>委外廠商</td>
+</tr>
+<tr>
+<td><strong>LLM</strong></td>
+<td>大語言模型</td>
+<td>讀完整本 Harrison 的總醫師</td>
+<td>把整套法規讀完的人</td>
+</tr>
+<tr>
+<td><strong>RAG</strong></td>
+<td>先查資料再回答</td>
+<td>翻病歷＋查 UpToDate 再回答</td>
+<td>先調卷宗和函釋再回答</td>
+</tr>
+<tr>
+<td><strong>Hallucination</strong></td>
+<td>AI 自信滿滿講錯話</td>
+<td>病人說「上次抽血正常」但 HbA1c 9.2%</td>
+<td>新人說「照第三點辦」但根本沒有第三點</td>
+</tr>
+<tr>
+<td><strong>Session</strong></td>
+<td>一次從啟動到關閉的對話</td>
+<td>一次門診時段</td>
+<td>一場會議</td>
+</tr>
+<tr>
+<td><strong>Prompt</strong></td>
+<td>你對 AI 說的話</td>
+<td>主訴 + 病史詢問</td>
+<td>交辦事項</td>
+</tr>
+<tr>
+<td><strong>CLI / Terminal</strong></td>
+<td>用文字下指令的操作方式</td>
+<td>下醫囑系統</td>
+<td>打檔號調卷</td>
+</tr>
+<tr>
+<td><strong>Local</strong></td>
+<td>你自己的電腦</td>
+<td>院內自有儀器</td>
+<td>檔案只在科內</td>
+</tr>
+<tr>
+<td><strong>Cloud</strong></td>
+<td>遠端伺服器機房</td>
+<td>送外部檢驗所</td>
+<td>委外處理</td>
+</tr>
+<tr>
+<td><strong>Git</strong></td>
+<td>修改紀錄版本控制</td>
+<td>電子病歷修改日誌</td>
+<td>公文版次紀錄</td>
+</tr>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>中央存放處，可跨電腦同步</td>
+<td>病歷中央檔案室</td>
+<td>檔案室</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第六章：最重要的心態</h2>
+<blockquote>
+<p><strong>AI Agent 是一個很有能力的新人。你不是在跟它比賽，你是在帶它。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>它會做的</th>
+<th>它會出錯的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>規劃步驟、拆解任務</td>
+<td>Hallucination（記錯、編造）</td>
+</tr>
+<tr>
+<td>用各種工具跑腿</td>
+<td>Context 滿了會忘前面</td>
+</tr>
+<tr>
+<td>快速產出報告草稿</td>
+<td>自作主張做你沒叫它做的事</td>
+</tr>
+<tr>
+<td>24 小時不休息</td>
+<td>Knowledge cutoff（只學到某年份）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>你的角色就是那個帶人、簽名的人：</strong></p>
+<table>
+<thead>
+<tr>
+<th>你要做的</th>
+<th>臨床上就是</th>
+<th>行政上就是</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>給它清楚的指示</td>
+<td>下對 Order</td>
+<td>交辦講清楚要什麼、什麼時候要</td>
+</tr>
+<tr>
+<td>覆核它產出的東西</td>
+<td>看住院醫師寫的病摘</td>
+<td>看承辦擬的稿</td>
+</tr>
+<tr>
+<td>簽名放行前確定內容正確</td>
+<td>不讓住院醫師自己決定治療計畫</td>
+<td>不讓助理自己決定對外怎麼回</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>會帶新人，你就會用 AI Agent。差別只在於這個新人打字比較快、不會累，
+而且你不用擔心他心情不好。</strong></p>
+</blockquote>
+<hr />
+<h2>第七章：每個人一定要知道的 5 個實戰注意事項</h2>
+<h3>① 資料安全底線（臨床和行政都適用）</h3>
+<blockquote>
+<p><strong>問題：資料經過 AI 雲端，會不會外洩？</strong></p>
+</blockquote>
+<p>會。你的每一句話、每份檔案，都會送到模型提供者的伺服器（DeepSeek 在中國、Anthropic/OpenAI 在美國）。</p>
+<p><strong>你的分級處理原則：</strong></p>
+<table>
+<thead>
+<tr>
+<th>資料等級</th>
+<th>臨床的例子</th>
+<th>行政的例子</th>
+<th>能不能餵給 AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 <strong>絕對不行</strong></td>
+<td>完整病歷、姓名＋身分證號＋病歷號、影像 raw data</td>
+<td><strong>人事與考績資料</strong>、員工個資、<strong>未決標的廠商報價與底價</strong>、未公開的公文、內部調查與申訴案件</td>
+<td>❌ 不行。去識別化後才能用，或只用本地端模型</td>
+</tr>
+<tr>
+<td>🟡 <strong>去識別化後可</strong></td>
+<td>去識別化的血糖數據、檢驗值、統計報表</td>
+<td>拿掉單位與人名的統計報表、匿名化的滿意度問卷原始資料</td>
+<td>✅ 可。移除姓名、代號化</td>
+</tr>
+<tr>
+<td>🟢 <strong>安全</strong></td>
+<td>活動簽到人次、KPI 達成率</td>
+<td>已公告的文件、公開統計、對外文宣文案、範本格式</td>
+<td>✅ 可</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚠️ 行政人員特別注意</strong>：很多人以為「我又沒碰病歷，資安跟我無關」——
+錯了。<strong>人事資料、考績、廠商底價、未決行的公文，敏感度不輸病歷</strong>，
+而且外洩的後果同樣是懲處或法律責任。<strong>「不是病人資料」不等於「可以外流」。</strong></p>
+</blockquote>
+<pre><code>共通的判斷原則：
+  臨床：送檢體去外送檢驗所 — 試管上只有條碼編號，
+        沒有姓名和身分證字號。去識別化之後才送出。
+
+  行政：把資料給廠商或委外單位之前，
+        你會先把不該給的欄位遮掉、把還沒定案的內容拿掉。
+
+  餵資料給 AI 雲端模型，比照同樣原則：
+  只給「條碼編號」等級的資料，不給「完整卷宗」。
+</code></pre>
+<p><strong>⚠️ 最容易被忽略的一點：去識別化 ≠ 不能反推</strong></p>
+<p>拿掉姓名和病歷號不代表就安全了。<strong>幾個非識別欄位組合起來，一樣可能指回同一個人</strong>：</p>
+<pre><code>臨床例：
+「2026 年 3 月，55 歲男性，第 2 型糖尿病合併洗腎，在 XX 里篩檢站」
+→ 那個站那個月符合條件的可能只有一個人。
+
+行政例：
+「OO 科去年唯一一位申請留職停薪的同仁」
+「那個只有兩家投標的案子，其中報價較低的那家」
+→ 沒寫名字，但科內每個人都知道是誰／是哪一家。
+</code></pre>
+<p>判斷原則跟你做統計時的 <strong>n &lt; 10 不當亮點</strong> 是同一件事：
+<strong>當某個條件組合下的人數少到個位數，那筆資料就已經不算去識別化了。</strong>
+要餵給 AI 之前，先問自己「這組條件底下有幾個人？」少於 10 個就再模糊化（年齡改成級距、日期只留月份、地點改成代號）。</p>
+<p><strong>實務建議：</strong>
+- 用免費模型處理「已去識別化」的數據分析
+- 含個資的檔案分析 → 改用本地端模型，或先寫好去識別化腳本讓 AI 跑
+- 不確定能不能給 → 就不要給。改說「假設有一組資料，平均值 135，標準差 20...」
+- <strong>上傳前先確認貴院的資安規範</strong>。多數醫院明訂病人資料與內部文件不得上傳外部雲端服務 —— 這條規定的位階高於本講義的任何建議，有衝突以院方規定為準。</p>
+<hr />
+<h3>② Agent 的權限邊界</h3>
+<blockquote>
+<p><strong>問題：它會不會亂刪檔案、把信寄錯人、把我的報告覆蓋掉？</strong></p>
+</blockquote>
+<pre><code>臨床比喻：
+  住院醫師可以開一般常規醫囑，
+  但不能越級開化療、不能自己去簽死亡證明。
+
+行政比喻：
+  助理可以擬稿、可以整理附件，
+  但不能代你決行、不能自己把公文發出去。
+
+  你給他的權限，本來就是有範圍的。
+</code></pre>
+<p>Agent 也一樣 — 它只能做你允許它做的事。</p>
+<p><strong>你的權限設定原則：</strong></p>
+<table>
+<thead>
+<tr>
+<th>權限</th>
+<th>建議</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>讀取檔案</strong></td>
+<td>✅ 開放</td>
+<td>不讓它讀檔案就失去意義了</td>
+</tr>
+<tr>
+<td><strong>寫入/修改檔案</strong></td>
+<td>⚠️ 有限度</td>
+<td>讓它寫到 <code>_draft</code> 或 <code>_output</code> 資料夾，不要直接蓋原始檔</td>
+</tr>
+<tr>
+<td><strong>刪除檔案</strong></td>
+<td>❌ 關閉</td>
+<td>除非你特別允許，否則不給刪除權限（有些 Agent 可設 read-only mode）</td>
+</tr>
+<tr>
+<td><strong>執行命令</strong></td>
+<td>⚠️ 看指令</td>
+<td>讓它跑 Python 算數據沒問題，不要讓它 <code>rm -rf</code></td>
+</tr>
+<tr>
+<td><strong>操作瀏覽器</strong></td>
+<td>⚠️ 看著它做</td>
+<td>自動登入院內系統、上傳報表時，先看清楚它在點什麼</td>
+</tr>
+<tr>
+<td><strong>發送郵件／送出公文</strong></td>
+<td>❌ 預設關閉</td>
+<td>等熟悉了再開放，而且每封都要你確認。<strong>寄錯人收不回來</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>實務習慣：</strong>
+- 重要檔案先存一份版本，Agent 改壞了可以救回來
+- 定期看它改了哪些東西（就像覆核住院醫師的醫囑、看承辦改過的稿）
+- 新流程先讓它在測試資料夾跑過一次，沒問題再放行</p>
+<hr />
+<h3>③ 費用爆掉的預防</h3>
+<blockquote>
+<p><strong>問題：用一用會不會收到天價帳單？</strong></p>
+</blockquote>
+<pre><code>臨床比喻：你開檢驗單的時候，心裡大概知道這張單多少錢。
+行政比喻：你送請購的時候，心裡大概知道這筆會不會超預算。
+
+用 AI API 也一樣 —— 你要知道什麼情境最燒錢。
+</code></pre>
+<p><strong>三種計費模式：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>代表</th>
+<th>會不會爆掉</th>
+<th>怎麼控制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>免費額度</strong></td>
+<td>各家 Provider 的免費層模型</td>
+<td>不會爆，用到上限就停</td>
+<td>適合新手練習</td>
+</tr>
+<tr>
+<td><strong>API 按量計費</strong></td>
+<td>OpenAI / Anthropic / DeepSeek 的付費 API</td>
+<td>會爆，<strong>但可以設防線</strong></td>
+<td>到 Provider 後台設每月用量上限（usage limit / budget），並指定用便宜的低階模型</td>
+</tr>
+<tr>
+<td><strong>訂閱月費</strong></td>
+<td>Claude Pro、ChatGPT Plus（約 US$20/月）</td>
+<td>不會爆，固定費用</td>
+<td>划算，適合中度使用者</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>：OpenCode 這類 Agent 軟體本身是免費的，<strong>花錢的是它背後接的 Provider</strong>。同一個 OpenCode，接免費模型就 0 元，接付費 API 就會計費 —— 別把「Agent 免費」誤會成「用起來免費」。</p>
+<p>「API 按量計費會爆」是實話，但不是無解 —— OpenAI 和 Anthropic 後台都能設每月上限，<strong>第一次拿到 API Key 就先去把上限設好</strong>，這是最有效的一道防線。</p>
+</blockquote>
+<p><strong>最燒錢的三個情境（避免掉）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>情境</th>
+<th>為什麼燒錢</th>
+<th>解決方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>把整份幾百頁的 PDF 丟進去叫它「讀一下」</td>
+<td>輸入 token 爆量</td>
+<td>先拆成章節，一次只餵一章</td>
+</tr>
+<tr>
+<td>讓 Agent 陷入程式除錯無限迴圈</td>
+<td>不斷呼叫模型，輸出越修越長</td>
+<td>設執行次數限制，3 次修不好就停</td>
+</tr>
+<tr>
+<td>用貴模型做簡單任務（叫最貴的旗艦模型幫你算 1+1）</td>
+<td>殺雞用牛刀</td>
+<td>簡單任務指定用免費小模型</td>
+</tr>
+</tbody>
+</table>
+<pre><code>一句話原則：
+  練習時用免費模型，真的要做正事再用付費模型。
+
+  臨床：實習醫師先拿假病人練抽血，不是直接上真人。
+  行政：新人先拿舊案練習擬稿，不是直接拿要決行的案子練。
+</code></pre>
+<hr />
+<h3>④ 具體第一步 — 從 0 到 1 最小行動清單</h3>
+<blockquote>
+<p><strong>問題：我知道概念了，但我現在到底要做什麼？</strong></p>
+</blockquote>
+<pre><code>你的目標不是學會所有名詞，而是：
+「10 分鐘內讓 Agent 跑起來，做一件對你有幫助的事。」
+</code></pre>
+<p><strong>以下是你現在就能做的事：</strong></p>
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>做什麼</th>
+<th>預計時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0. 先裝 Node.js</strong></td>
+<td>去 https://nodejs.org 下載 LTS 版，一路下一步</td>
+<td>5 分鐘</td>
+</tr>
+<tr>
+<td><strong>1. 安裝 OpenCode</strong></td>
+<td>打開 PowerShell，貼上下面那行指令</td>
+<td>3 分鐘</td>
+</tr>
+<tr>
+<td><strong>2. 第一次啟動</strong></td>
+<td>在 terminal 打 <code>opencode</code>，看到對話提示就成功了</td>
+<td>1 分鐘</td>
+</tr>
+<tr>
+<td><strong>3. 給它第一個任務</strong></td>
+<td>不要試艱澀的事。就說：「看看我桌面有哪些檔案」</td>
+<td>1 分鐘</td>
+</tr>
+<tr>
+<td><strong>4. 做一個對你有用的小任務</strong></td>
+<td>例如：「讀我桌面上最新的 Excel 檔，告訴我有幾欄幾列、欄位名稱是什麼」</td>
+<td>5 分鐘</td>
+</tr>
+<tr>
+<td><strong>5. 設定你的 SOP</strong></td>
+<td>把每次都要交代的規矩寫進 AGENTS.md（臨床：「性別 0=女 1=男」「n&lt;10 不當亮點」；行政：「金額含稅」「單位用全銜」）</td>
+<td>10 分鐘</td>
+</tr>
+<tr>
+<td><strong>6. 把流程寫成 Skill</strong></td>
+<td>等你做完第二次同樣的事，叫它把流程寫成 Skill，以後一句話啟動</td>
+<td>下次再說</td>
+</tr>
+</tbody>
+</table>
+<p><strong>步驟 1 的安裝指令</strong>（在 PowerShell 貼上這一行）：</p>
+<pre><code class="language-powershell">npm install -g opencode-ai
+</code></pre>
+<p>裝完之後打 <code>opencode --version</code> 應該會印出版本號，有印出來就代表裝好了。
+（如果你偏好圖形介面而不是打字，OpenCode 也有桌面版 App 可以直接下載安裝，功能一樣。）</p>
+<pre><code>第一個指令的口訣：
+  越具體越好、一次只做一件事、從不會破壞的事情開始。
+
+  ✅ 好指令：「讀我桌面上的『OO 統計.xlsx』，列出所有欄位名稱。不要修改檔案。」
+  ❌ 爛指令：「幫我分析今年的成果」
+    （太模糊，Agent 不知道檔案在哪、要看什麼指標）
+</code></pre>
+<blockquote>
+<p><strong>範例路徑要用你自己的</strong>。這份講義刻意不寫死 <code>C:\Users\某某某\Desktop</code>，
+因為每台電腦的使用者名稱都不一樣，照抄一定失敗。
+直接跟 Agent 說「我桌面上的 xxx.xlsx」就好，它自己找得到。</p>
+</blockquote>
+<p><strong>第一次就成功的關鍵：</strong>
+- 不要急著設定 MCP、API Key 那些
+- 先用內建功能（讀檔、執行程式）就有 80% 的 utility
+- 遇到錯誤很正常 — 把錯誤訊息原封不動貼給 Agent 看，它通常會自己修
+- 第一個真正的產出（例如一份簡單的 Excel 摘要）會讓你立刻「有感」</p>
+<hr />
+<h3>⑤ 人機分工紅線</h3>
+<blockquote>
+<p><strong>問題：哪些事可以放心交給 Agent，哪些一定要自己來？</strong></p>
+</blockquote>
+<pre><code>臨床比喻：
+  住院醫師可以寫入院記錄、開常規檢查、整理數據，
+  但診斷方針、重大治療決策、跟家屬說明病情 — 這是主治的事。
+
+行政比喻：
+  助理可以整理資料、擬初稿、跑統計，
+  但對外怎麼回、要不要同意、跟長官怎麼報告 — 這是你的事。
+</code></pre>
+<p><strong>AI Agent 適合做的（綠燈）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>事項</th>
+<th>為什麼可以給它做</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>整理數據、算描述性統計</td>
+<td>數字運算 AI 很強，你也會覆核</td>
+</tr>
+<tr>
+<td>產出報告初稿（文字 + 圖表）</td>
+<td>省掉從空白頁開始的痛苦</td>
+</tr>
+<tr>
+<td>跨檔案搜尋特定資訊</td>
+<td>比人工翻資料夾快 10 倍</td>
+</tr>
+<tr>
+<td>格式轉換（Excel → Word → PPT 初稿）</td>
+<td>純粹的文書勞動</td>
+</tr>
+<tr>
+<td>例行性摘要（把長文章濃縮成重點）</td>
+<td>AI 擅長歸納</td>
+</tr>
+<tr>
+<td>自動歸檔分類</td>
+<td>只要分類規則明確</td>
+</tr>
+</tbody>
+</table>
+<p><strong>你要自己做的（紅線）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>事項</th>
+<th>為什麼不能交給它</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>簽名／決行的文件</strong></td>
+<td>法律責任是你的，不是 AI 的</td>
+</tr>
+<tr>
+<td>給病人看的衛教單（最終版）</td>
+<td>你必須確保內容符合病人個別狀況</td>
+</tr>
+<tr>
+<td>涉及診斷或治療建議的判斷</td>
+<td>Hallucination 可能致命</td>
+</tr>
+<tr>
+<td><strong>對外正式回文、承諾事項</strong></td>
+<td>發出去就代表機關的立場，收不回來</td>
+</tr>
+<tr>
+<td><strong>會議決議的認定</strong></td>
+<td>AI 會把「討論到」寫成「決議」，這一條要你自己對</td>
+</tr>
+<tr>
+<td>未去識別化的個資處理</td>
+<td>個資法問題</td>
+</tr>
+<tr>
+<td><strong>人事相關（誰排班、誰考績、誰被檢討）</strong></td>
+<td>這不是你該自動化的，也不該進雲端</td>
+</tr>
+<tr>
+<td>需要「常識＋人情判斷」的溝通</td>
+<td>AI 不懂人情世故，也不知道這句話會得罪誰</td>
+</tr>
+</tbody>
+</table>
+<pre><code>一句話紅線原則：
+  「寫草稿給 AI，做決定給自己。」
+
+  所有對外、對病人、對長官簽名負責的事，
+  最後一關一定要是你。
+  AI 是加速器，不是自動駕駛。
+</code></pre>
+<hr />
+<h2>附錄：給初心者的 10 分鐘快速啟動</h2>
+<pre><code class="language-powershell"># 只做一次：安裝
+npm install -g opencode-ai
+
+# 以後每次：啟動
+opencode
+</code></pre>
+<p>出現對話提示後，直接打你的第一個任務。<strong>先講你是誰、在做什麼</strong>，
+它後面的回答會準很多：</p>
+<pre><code>臨床版：
+「我是減重門診醫師。
+ 請去讀我桌面上最新的那個 Excel 檔，
+ 告訴我這個檔案有幾列幾欄、每個欄位的名稱和資料類型。
+ 不要修改任何檔案，只看就好。」
+
+行政版：
+「我是 OO 科承辦，負責一個年度計畫的成果報告。
+ 請去讀我桌面上最新的那個 Excel 檔，
+ 告訴我這個檔案有幾列幾欄、每個欄位的名稱和資料類型。
+ 不要修改任何檔案，只看就好。」
+</code></pre>
+<p>這樣你就完成了從 0 到 1。後面的事情，邊用邊學。</p>
+<hr />
+<blockquote>
+<p>最後更新：2026-07-28（第三版，擴大適用職類）
+第一版：給醫師的 AI Agent 白話入門</p>
+<p>第二版校訂重點：修正中文 token 換算方向、補上實際安裝指令、
+移除寫死的使用者路徑與過時型號名稱、補「去識別化不等於不能反推」與院方資安規範、
+統一 Subagent 比喻。</p>
+<p>第三版重點：主比喻從「主治—住院醫師」改為全職類共通的<strong>「帶新人」</strong>；
+所有核心名詞改為<strong>臨床／行政雙軌比喻</strong>；新增「會議紀錄→決議追蹤表」場景；
+資料安全底線補上<strong>行政敏感資料</strong>（人事、考績、廠商報價、未公開公文）。</p>
+</blockquote>
+</article>
+<footer>© 2026 潘湘如醫師｜家醫科・可自由用於院內教育訓練與個人學習</footer>
+</div>
+</body>
+</html>

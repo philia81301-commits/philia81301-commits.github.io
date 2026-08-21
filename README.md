@@ -9,10 +9,14 @@
 
 ```
 index.html            首頁（三區：門診臨床工具／社區篩檢／教學與演講）
-ai-teaching/          AI Agent 醫療職場入門的介紹頁與教材檔
+ai-teaching/          AI 教學介紹頁＋教材檔＋線上閱讀版（guide.html／manual.html）
+qr/                   QR 總表（A4 可列印，張貼診間／演講會場用）
+404.html              找不到頁面（品牌風格）
 assets/qr/            預先產生的 QR code SVG
+assets/               hero 底圖、玫瑰浮水印、OG 分享圖、favicon
 rdq/                  需求規格卡（.gitignore 排除，不上傳）
 ```
+加新工具時記得：首頁加卡片＋ `qr/index.html` 加一格。
 
 ## 之後怎麼加新工具
 
