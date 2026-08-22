@@ -24,8 +24,15 @@
 - [x] P1 上線：三分區卡片、AI 教學介紹頁、QR 彈窗、README（2026-08-21）
 - [x] 視覺迭代定稿：麵包 hero＋玫瑰金玫瑰＋立體化（2026-08-21）
 - [x] 優化包：OG 分享卡、favicon、教材線上閱讀版、手機小玫瑰、QR 總表、404（2026-08-22）
-- [x] 卡片擴充至 12 張（新增 weight-clinic-reports 月報索引、減重大冒險、肌少症衛教小測驗）
+- [x] 卡片擴充（weight-clinic-reports 月報索引、減重大冒險、肌少症衛教小測驗、GLP-1 減重衛教）
+- [x] 下架臨床輸入工具卡片（2026-08-22）：**weight-clinic、weight-maintain-clinic 判定不適合公開展示，
+      已自首頁與 qr/ 移除，不要再上架**；工具本身仍在各自 repo 正常運作。目前 11 張卡片
 - [ ] 之後有新工具隨時上架（步驟見 README.md；記得 qr/index.html 也加一格）
+
+## 多 session 協作注意
+
+這個 repo 可能同時被多個 Claude session 修改（曾發生 push 被拒）。
+**push 前先 `git fetch`，被拒就 `git pull --rebase` 再推**，不要 force。
 
 ## 相關產出
 
